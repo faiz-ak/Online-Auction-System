@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* CSS FOR NAVBAR */
+ .navbar-custom {
+      background-color: #f8f9fa;
+      border-radius: 2em;
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      z-index: 1000;
+    }
+#signup, #bid{
+     transition: 0.3s;
+    border-color: #4cc8bc;
+}
+
+#signup:hover{
+  background-color: #4cc8bc;
+}
+
+
+/* CSS FOR HERO SECTION */
+.hero{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+    align-items: center;
+    margin: 5em 0;
+    padding: 2em 3em;
+}
+.hero-content{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+#h2text{
+    font-size: 40px;
+}
+#ptext{
+    font-size: 19px;
+}
+/*  */
+/* CSS FOR Product SECTION */
+.product-details {
+  display: grid;
+ grid-template-columns: repeat(4, 1fr);
+ row-gap: 1em;
+  margin: 5em 0;
+  padding: 3em 3em;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1em 1em;
+  width: 300px;
+  max-width: 350px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-img img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+}
+
+.card-content h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.card-content p {
+  font-size: 14px;
+}
+
+.card-content span {
+  color: #007bff;
+  font-weight: 500;
+}
+
+#bid-btn {
+  width: 100%;
+  padding: 0.5em 0.5em;
+  font-size: 14px;
+  border: 1px solid #4cc8bc;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 6px;
+}
+
+#bid-btn:hover {
+  background-color: #4cc8bc;
+  color: white;
+}
+
+/*  */
+@media (max-width:1120px) {
+    .hero{
+        flex-direction: column;
+        align-items: start;
+    }
+    .product-details{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 1em 1em;
+    }
+}
+@media (max-width:650px) {
+    .hero{
+        padding: 1em 1em;
+    }
+    .heroimg img{
+        width: 300px !important;
+    }
+    #h2text{
+    font-size: 28px;
+}
+#ptext{
+    font-size: 15px;
+}
+#Explore{
+    padding: 1em 1em !important;
+}
+}
