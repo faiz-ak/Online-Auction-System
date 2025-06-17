@@ -4,426 +4,553 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auction Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+ @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
-      :root {
-        --primary: #4a6bff;
-        --secondary: #f8f9fa;
-        --success: #28a745;
-        --warning: #ffc107;
-        --danger: #dc3545;
-      }
+:root {
+    --primary: #4a6bff;
+    --secondary: #f8f9fa;
+    --success: #28a745;
+    --warning: #ffc107;
+    --danger: #dc3545;
+}
 
-      body {
-        font-family: "Montserrat", sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f5f5f5;
-      }
+body {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
 
-      .dashboard {
-        display: grid;
-        grid-template-columns: 250px 1fr;
-        min-height: 100vh;
-      }
+.dashboard {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 100vh;
+}
 
-      /* Sidebar */
-      .sidebar {
-        background-color: #4cc8bc;
-        color: white;
-        padding: 20px 0;
-      }
+/* Sidebar */
+.sidebar {
+    background-color: #4cc8bc;
+    color: white;
+    padding: 20px 0;
+}
 
-      .sidebar-header {
-        display: flex;
-        justify-content: center;
-        padding: 0 20px 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
+.sidebar-header {
+    display: flex;
+    justify-content: center;
+    padding: 0 20px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-      .sidebar-menu {
-        padding: 20px;
-      }
+.sidebar-menu {
+    padding: 20px;
+}
 
-      .menu-item {
-        padding: 10px;
-        margin-bottom: 5px;
-        border-radius: 5px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-      }
+.menu-item {
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
 
-      /* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
-      .menu-item {
-        appearance: none;
-        background-color: transparent;
-        border-radius: 15px;
-        box-sizing: border-box;
-        color: black;
-        cursor: pointer;
-        display: inline-block;
-        font-size: 16px;
-        font-weight: 600;
-        line-height: normal;
-        margin: 0;
-        min-height: 60px;
-        min-width: 0;
-        outline: none;
-        padding: 16px 24px;
-        text-align: center;
-        text-decoration: none;
-        transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        width: 100%;
-        will-change: transform;
-      }
+.menu-item {
+    appearance: none;
+    background-color: transparent;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 60px;
+    min-width: 0;
+    outline: none;
+    padding: 16px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
+    will-change: transform;
+}
 
-      .menu-item:disabled {
-        pointer-events: none;
-      }
+.menu-item:disabled {
+    pointer-events: none;
+}
 
-      .menu-item:hover {
-        color: #4cc8bc;
-        background-color: white;
-        box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-        transform: translateY(-2px);
-      }
+.menu-item:hover {
+    color: #4cc8bc;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
 
-      .menu-item:active {
-        box-shadow: none;
-        transform: translateY(0);
-      }
-      /* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+.menu-item:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
 
-      /* Main Content */
-      .main-content {
-        padding: 20px;
-      }
+/* Main Content */
+.main-content {
+    padding: 20px;
+}
 
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 30px;
-      }
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
 
-      .search-bar {
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ddd;
-        width: 300px;
-      }
+.search-bar {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 300px;
+}
 
-      .user-profile {
-        display: flex;
-        align-items: center;
-      }
+.user-profile {
+    display: flex;
+    align-items: center;
+}
 
-      .user-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: #ddd;
-        margin-right: 10px;
-      }
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin-right: 10px;
+}
 
-      /* Stats Cards */
-      .stats-container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-        margin-bottom: 30px;
-      }
+/* Stats Cards */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
 
-      .stat-card {
-        background-color: white;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      }
+.stat-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
 
-      .stat-card h3 {
-        margin-top: 0;
-        color: #666;
-        font-size: 14px;
-      }
+.stat-card h3 {
+    margin-top: 0;
+    color: #666;
+    font-size: 14px;
+}
 
-      .stat-card .value {
-        font-size: 24px;
-        font-weight: bold;
-        margin: 10px 0;
-      }
+.stat-card .value {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+}
 
-      .stat-card .change {
-        font-size: 12px;
-      }
+.stat-card .change {
+    font-size: 12px;
+}
 
-      .change.positive {
-        color: var(--success);
-      }
+.change.positive {
+    color: var(--success);
+}
 
-      .change.negative {
-        color: var(--danger);
-      }
+.change.negative {
+    color: var(--danger);
+}
 
-      /* Recent Auctions */
-      .recent-auctions {
-        background-color: white;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      }
+/* Recent Auctions */
+.recent-auctions {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
 
-      .auctions-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-      }
+.auctions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        display: flexbox;
-      }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    display: flexbox;
+}
 
-      th,
-      td {
-        padding: 12px 15px;
-        text-align: left;
-        border-bottom: 1px solid #eee;
-      }
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
 
-      th {
-        background-color: #f8f9fa;
-        font-weight: 500;
-      }
+th {
+    background-color: #f8f9fa;
+    font-weight: 500;
+}
 
-      .status {
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: 500;
-      }
+.status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
 
-      .status.active {
-        background-color: #e6f7ee;
-        color: var(--success);
-      }
+.status.active {
+    background-color: #e6f7ee;
+    color: var(--success);
+}
 
-      .status.ended {
-        background-color: #fee;
-        color: var(--danger);
-      }
+.status.ended {
+    background-color: #fee;
+    color: var(--danger);
+}
 
-      .status.pending {
-        background-color: #fff8e6;
-        color: var(--warning);
-      }
+.status.pending {
+    background-color: #fff8e6;
+    color: var(--warning);
+}
 
-      .btn {
-        padding: 8px 15px;
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
-        font-weight: 500;
-      }
+.btn {
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
 
-      .btn-primary {
-        background-color: #4cc8bc;
-        color: white;
-      }
+.btn-primary {
+    background-color: #4cc8bc;
+    color: white;
+}
 
-      .chart-container {
-        background-color: white;
-        border-radius: 10px;
-        padding: 20px;
-        margin-top: 20px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        height: 300px;
-      }
+.btn-primary { 
+    margin-right: 5px; 
+}
 
-      img {
-        height: 50px;
-      }
+.btn-primary:disabled { 
+    background: #6c757d; 
+    cursor: not-allowed; 
+}
+
+.chart-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    height: 300px;
+}
+
+img {
+    height: 50px;
+}
+
+#bidPopup { 
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    background: #ffffff; 
+    padding: 20px; 
+    border-radius: 8px; 
+    box-shadow: 0 0 15px rgba(0,0,0,0.3); 
+    z-index: 1000; 
+    width: 300px; 
+}
+
+#bidPopup .btn { 
+    margin-right: 10px; 
+}
+
+#overlay { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0,0,0,0.5); 
+    z-index: 999; 
+}
+
     </style>
   </head>
-  <body>
-    <div class="dashboard">
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <div class="sidebar-header">
-          <h2>BidSmart</h2>
-        </div>
-        <div class="sidebar-menu">
-          <div class="menu-item active">Dashboard</div>
-          <div class="menu-item">Home</div>
-        </div>
-      </div>
-
-      <!-- Main Content -->
-      <div class="main-content">
-        <div class="header">
-          <h1>Dashboard</h1>
-          <div class="user-profile">
-            <span>Admin User</span>
-          </div>
+ <body>
+     <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>BidSmart</h2>
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-item active">Dashboard</div>
+                <div class="menu-item">Home</div>
+            </div>
         </div>
 
-        <!-- Stats Cards -->
-        <div class="stats-container">
-          <div class="stat-card">
-            <h3>Active Auctions</h3>
-            <div class="value">142</div>
-          </div>
-          <div class="stat-card">
-            <h3>Total Bids</h3>
-            <div class="value">1,284</div>
-          </div>
-          <div class="stat-card">
-            <h3>New Users</h3>
-            <div class="value">64</div>
-          </div>
-          <div class="stat-card">
-            <h3>Revenue</h3>
-            <div class="value">Rs. 8,420.00</div>
-          </div>
-        </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Dashboard</h1>
+                <div class="user-profile">
+                    <span>Admin User</span>
+                </div>
+            </div>
 
-        <!-- Recent Auctions Table -->
-        <div class="recent-auctions">
-          <div class="auctions-header">
-            <h2>Recent Auctions</h2>
-            <button class="btn btn-primary">View All</button>
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th>Item Display</th>
-                <th>Item Name</th>
-                <th>Seller</th>
-                <th>Current Bid</th>
-                <th>Bids</th>
-                <th>Ends In</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <img
-                    src="https://media.istockphoto.com/id/1156218302/photo/top-view-of-vintage-cameras-on-white-background.jpg?s=612x612&w=0&k=20&c=LBHmMbv1VoBPaynZ1v9ho6vUU-2jhxh1IZ2toXBJ0js="
-                    alt=""
-                  />
-                </td>
-                <td>Vintage Camera</td>
-                <td>user123</td>
-                <td>Rs. 245.00</td>
-                <td>18</td>
-                <td>2h 15m</td>
-                <td><span class="status active">Active</span></td>
-                <td>
-                  <button type="button" class="btn btn-primary">Bid Now</button>
-                  <button type="button" class="btn btn-primary">
-                    Update Bid
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img
-                    src="https://nolanryanfoundation.org/cdn/shop/products/autographedmajor.jpg?v=1677096047"
-                    alt=""
-                  />
-                </td>
-                <td>Signed Baseball</td>
-                <td>collector22</td>
-                <td>Rs. 1,150.00</td>
-                <td>32</td>
-                <td>5h 30m</td>
-                <td><span class="status active">Active</span></td>
-                <td>
-                  <button type="button" class="btn btn-primary">Bid Now</button>
-                  <button type="button" class="btn btn-primary">
-                    Update Bid
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img
-                    src="https://aarsunwoods.com/wp-content/uploads/2020/03/Antique-Wooden-Chair-UH-CHR-0016-jpg.webp"
-                    alt=""
-                  />
-                </td>
-                <td>Antique Chair</td>
-                <td>antiques4u</td>
-                <td>Rs. 320.00</td>
-                <td>7</td>
-                <td>Ended</td>
-                <td><span class="status ended">Ended</span></td>
-              </tr>
-              <tr>
-                <td>
-                  <img
-                    src="https://www.thesprucecrafts.com/thmb/hubPX6u0Np3v1GghPx1S5BT_HLA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/US-Type-Coins-Major-56a1794e5f9b58b7d0bfa597.jpg"
-                    alt=""
-                  />
-                </td>
-                <td>Rare Coin Collection</td>
-                <td>numismatist</td>
-                <td>Rs. 2,800.00</td>
-                <td>24</td>
-                <td>1d 3h</td>
-                <td><span class="status active">Active</span></td>
-                <td>
-                  <button type="button" class="btn btn-primary">Bid Now</button>
-                  <button type="button" class="btn btn-primary">
-                    Update Bid
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img
-                    src="https://m.media-amazon.com/images/I/51AHHmX-17L.jpg"
-                    alt=""
-                  />
-                </td>
-                <td>Smartphone</td>
-                <td>techguy</td>
-                <td>Rs. 180.00</td>
-                <td>9</td>
-                <td>Pending</td>
-                <td><span class="status pending">Pending</span></td>
-              </tr>
-            </tbody>
-          </table>
+            <!-- Stats Cards -->
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Active Auctions</h3>
+                    <div class="value">142</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Bids</h3>
+                    <div class="value">1,284</div>
+                </div>
+                <div class="stat-card">
+                    <h3>New Users</h3>
+                    <div class="value">64</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Revenue</h3>
+                    <div class="value">Rs. 8,420.00</div>
+                </div>
+            </div>
+
+            <!-- Recent Auctions Table -->
+            <div class="recent-auctions">
+                <div class="auctions-header">
+                    <h2>Recent Auctions</h2>
+                    <!-- <button class="btn btn-primary">View All</button> -->
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item Display</th>
+                            <th>Item Name</th>
+                            <th>Seller</th>
+                            <th>Current Bid</th>
+                            <th>Bids</th>
+                            <th>Ends In</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="https://media.istockphoto.com/id/1156218302/photo/top-view-of-vintage-cameras-on-white-background.jpg?s=612x612&w=0&k=20&c=LBHmMbv1VoBPaynZ1v9ho6vUU-2jhxh1IZ2toXBJ0js=" alt="Vintage Camera">
+                            </td>
+                            <td>Vintage Camera</td>
+                            <td>user123</td>
+                            <td>Rs. 245.00</td>
+                            <td>18</td>
+                            <td>55h 00m</td>
+                            <td><span class="status active">Active</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary bid-now">Bid Now</button>
+                                <button type="button" class="btn btn-primary update-bid">Update Bid</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="https://nolanryanfoundation.org/cdn/shop/products/autographedmajor.jpg?v=1677096047" alt="Signed Baseball">
+                            </td>
+                            <td>Signed Baseball</td>
+                            <td>collector22</td>
+                            <td>Rs. 1,150.00</td>
+                            <td>32</td>
+                            <td>5h 30m</td>
+                            <td><span class="status active">Active</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary bid-now">Bid Now</button>
+                                <button type="button" class="btn btn-primary update-bid">Update Bid</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="https://aarsunwoods.com/wp-content/uploads/2020/03/Antique-Wooden-Chair-UH-CHR-0016-jpg.webp" alt="Antique Chair">
+                            </td>
+                            <td>Antique Chair</td>
+                            <td>antiques4u</td>
+                            <td>Rs. 320.00</td>
+                            <td>7</td>
+                            <td>Ended</td>
+                            <td><span class="status ended">Ended</span></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="https://www.thesprucecrafts.com/thmb/hubPX6u0Np3v1GghPx1S5BT_HLA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/US-Type-Coins-Major-56a1794e5f9b58b7d0bfa597.jpg" alt="Rare Coin Collection">
+                            </td>
+                            <td>Rare Coin Collection</td>
+                            <td>numismatist</td>
+                            <td>Rs. 2,800.00</td>
+                            <td>24</td>
+                            <td>1d 3h</td>
+                            <td><span class="status active">Active</span></td>
+                            <td>
+                                <button type="button" class="btn btn-primary bid-now">Bid Now</button>
+                                <button type="button" class="btn btn-primary update-bid">Update Bid</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="https://m.media-amazon.com/images/I/51AHHmX-17L.jpg" alt="Smartphone">
+                            </td>
+                            <td>Smartphone</td>
+                            <td>techguy</td>
+                            <td>Rs. 180.00</td>
+                            <td>9</td>
+                            <td>Pending</td>
+                            <td><span class="status pending">Pending</span></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
     </div>
-  </body>
-  <script>
-    // Simple interactive elements
-    document.querySelectorAll(".menu-item").forEach((item) => {
-      item.addEventListener("click", function () {
-        document.querySelector(".menu-item.active").classList.remove("active");
-        this.classList.add("active");
-      });
-    });
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Timer Functionality (unchanged from your original code)
+        function parseTimeToSeconds(timeStr) {
+            if (timeStr === 'Ended' || timeStr === 'Pending') return -1;
+            let seconds = 0;
+            const daysMatch = timeStr.match(/(\d+)d/);
+            const hoursMatch = timeStr.match(/(\d+)h/);
+            const minutesMatch = timeStr.match(/(\d+)m/);
+            if (daysMatch) seconds += parseInt(daysMatch[1]) * 24 * 60 * 60;
+            if (hoursMatch) seconds += parseInt(hoursMatch[1]) * 60 * 60;
+            if (minutesMatch) seconds += parseInt(minutesMatch[1]) * 60;
+            return seconds;
+        }
 
-    // Simulate real-time updates
-    setInterval(() => {
-      const activeCount = document.querySelector(".stats-container .value");
-      const current = parseInt(activeCount.textContent.replace(/,/g, ""));
-      activeCount.textContent = (
-        current + Math.floor(Math.random() * 3)
-      ).toLocaleString();
-    }, 5000);
-  </script>
+        function formatTime(seconds) {
+            if (seconds <= 0) return 'Ended';
+            const days = Math.floor(seconds / (24 * 60 * 60));
+            seconds %= (24 * 60 * 60);
+            const hours = Math.floor(seconds / (60 * 60));
+            seconds %= (60 * 60);
+            const minutes = Math.floor(seconds / 60);
+            let result = '';
+            if (days > 0) result += `${days}d `;
+            if (hours > 0 || days > 0) result += `${hours}h `;
+            result += `${minutes}m`;
+            return result.trim();
+        }
+
+        function updateTimers() {
+            $('table tbody tr').each(function() {
+                const $row = $(this);
+                const $endsInCell = $row.find('td:nth-child(6)');
+                const $statusCell = $row.find('td:nth-child(7) span');
+                let timeText = $endsInCell.text().trim();
+
+                if (timeText !== 'Ended' && timeText !== 'Pending') {
+                    let seconds = parseTimeToSeconds(timeText);
+                    if (seconds > 0) {
+                        seconds--;
+                        $endsInCell.text(formatTime(seconds));
+                        if (seconds <= 0) {
+                            $endsInCell.text('Ended');
+                            $statusCell.text('Ended').removeClass('active pending').addClass('ended');
+                            $row.find('.bid-now, .update-bid').prop('disabled', true);
+                        }
+                    }
+                }
+            });
+        }
+
+        setInterval(updateTimers, 1000);
+
+        // Popup and Bid Functionality
+        function showBidPopup(itemName, currentBid, rowIndex, isBidNow) {
+            // Remove existing popup if any
+            $('#bidPopup, #overlay').remove();
+
+            // Create popup HTML
+            const popupHtml = `
+                <div id="bidPopup" class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Place Bid for ${itemName}</h5>
+                        <p class="card-text">Current Bid: ${currentBid}</p>
+                        <label for="bidAmount" class="form-label">New Bid Amount (Rs.):</label>
+                        <input type="number" id="bidAmount" class="form-control" min="0" step="0.01">
+                        <div class="mt-3 text-end">
+                            <button id="submitBid" class="btn btn-success">Submit</button>
+                            <button id="cancelBid" class="btn btn-danger">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="overlay"></div>
+            `;
+            $('body').append(popupHtml);
+
+            // Handle submit bid
+            $('#submitBid').on('click', function() {
+                console.log('Submit bid clicked');
+                const newBid = parseFloat($('#bidAmount').val());
+                const currentBidValue = parseFloat(currentBid.replace('Rs. ', '').replace(',', ''));
+                if (isNaN(newBid) || newBid <= currentBidValue) {
+                    alert('Please enter a bid amount higher than the current bid.');
+                    return;
+                }
+                // Update bid amount and bid count
+                const $row = $(`table tbody tr:eq(${rowIndex})`);
+                $row.find('td:nth-child(4)').text(`Rs. ${newBid.toFixed(2)}`);
+                const currentBids = parseInt($row.find('td:nth-child(5)').text());
+                $row.find('td:nth-child(5)').text(currentBids + 1);
+                // Disable Bid Now button if this was a Bid Now action
+                if (isBidNow) {
+                    console.log('Disabling Bid Now button for row:', rowIndex);
+                    $row.find('.bid-now').prop('disabled', true);
+                }
+                $('#bidPopup, #overlay').remove();
+            });
+
+            // Handle cancel
+            $('#cancelBid, #overlay').on('click', function() {
+                console.log('Cancel bid or overlay clicked');
+                $('#bidPopup, #overlay').remove();
+            });
+        }
+
+        // Bid Now and Update Bid button clicks
+        $(document).on('click', '.bid-now, .update-bid', function(e) {
+            e.preventDefault();
+            console.log('Button clicked:', $(this).text());
+            const $row = $(this).closest('tr');
+            const itemName = $row.find('td:nth-child(2)').text();
+            const currentBid = $row.find('td:nth-child(4)').text();
+            const rowIndex = $row.index();
+            const status = $row.find('td:nth-child(7) span').text().trim();
+            const isBidNow = $(this).hasClass('bid-now');
+
+            if (status === 'Active') {
+                showBidPopup(itemName, currentBid, rowIndex, isBidNow);
+            } else {
+                alert('Bidding is not available for this auction.');
+            }
+        });
+
+        // Debug: Log to confirm script is running
+        console.log('BidSmart script loaded. Buttons should be clickable.');
+    });
+</script>
+ </body>     
 </html>
