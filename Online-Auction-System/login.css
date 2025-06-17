@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: white;
+}
+
+.container {
+  display: flex;
+  min-width: 300px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.left, .right {
+  flex: 1;
+  
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2em 2em;
+  gap: 15px;
+}
+
+.left h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #00bfa6;
+}
+
+form input {
+  width: 100%;
+  padding: 12px;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+form button {
+  width: 100%;
+  padding: 12px;
+  background: #00bfa6;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.remember-me {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  font-size: 0.85rem;
+  color: #6c757d;
+  gap: 0.5rem; /* 👈 Ensures space between label and checkbox */
+}
+
+.remember-me label {
+  order: 1; /* 👈 Put label first */
+  white-space: nowrap;
+}
+
+.remember-me input[type="checkbox"] {
+  order: 2;
+  margin: 0; /* Removes default spacing */
+}
+
+.signup-text {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.signup-text a {
+  color: #4fd1c5;
+  text-decoration: none;
+}
+
+.right {
+ 
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  /* padding: 1rem; */
+  position: relative;
+  
+}
+
+.right img {
+  width: 362px; /* or adjust as needed */
+  height: auto;
+  flex-wrap: wrap;
+}
+/* Tablet and below */
+@media (max-width: 969px) {
+  .container {
+ 
+    flex-direction: column-reverse;
+    height: auto;
+  }
+
+  .right {
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .right img {
+    width: 85%;
+    max-width: 350px;
+    padding-bottom: 2rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 575px) {
+  .left {
+    padding: 1.5rem;
+  }
+
+  .left h2 {
+    font-size: 1.5rem;
+  }
+
+  form input, form button {
+    font-size: 0.9rem;
+  }
+
+  .remember-me {
+    font-size: 0.75rem;
+  }
+}
