@@ -67,7 +67,7 @@
   border-radius: 12px;
   padding: 1em 1em;
   min-width: 300px;
-  max-width: 350px;
+  max-width: 300px !important;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
 }
