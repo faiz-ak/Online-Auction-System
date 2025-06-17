@@ -36,11 +36,11 @@ body {
 
 .left h2 {
   font-size: 2rem;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   color: #00bfa6;
 }
 
-form input {
+#email, #password {
   width: 100%;
   padding: 12px;
   margin: 0.5rem 0;
@@ -106,7 +106,6 @@ form button {
 /* Tablet and below */
 @media (max-width: 969px) {
   .container {
- 
     flex-direction: column-reverse;
     height: auto;
   }
@@ -114,13 +113,13 @@ form button {
   .right {
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+
   }
 
   .right img {
     width: 85%;
     max-width: 350px;
-    padding-bottom: 2rem;
+    padding-top: 11em;
   }
 }
 
