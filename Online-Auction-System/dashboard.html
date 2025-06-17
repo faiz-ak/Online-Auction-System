@@ -62,15 +62,28 @@
             <div class="value">Rs. 8,420.00</div>
           </div>
         </div>
-          <!-- form validation -->
+       
 
           
         <!-- Recent Auctions Table -->
         <div class="recent-auctions">
           <div class="auctions-header">
             <h2>Recent Auctions</h2>
-            <!-- <button class="btn btn-primary">View All</button> -->
+            <button class="btn btn-primary" id="additem" data-bs-toggle="modal" data-bs-target="#addItemModal">Add Item</button>
+
           </div>
+           <!-- form validation -->
+           <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="max-width: 300px;">
+                  <div class="modal-content">
+                      <div class="modal-body p-0">
+                          <iframe src="additem.html" frameborder="0" width="100%" height="400" style="border: none;"></iframe>
+                      </div>
+                  </div>
+            </div>
+          </div>
+
+
           <table>
             <thead>
               <tr>
@@ -360,6 +373,14 @@
         const toast = new bootstrap.Toast(toastEl);
         toast.show();
       }
+
+      //function to close the additem modal
+      window.addEventListener('message', function(event) {
+        if (event.data === 'closeModal') {
+            $('#addItemModal').modal('hide');  
+        }
+      });
+
     </script>
   </body>
 </html>
