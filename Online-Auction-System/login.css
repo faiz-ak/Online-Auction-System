@@ -15,7 +15,7 @@ body {
   background: white;
 }
 
-.container {
+#container {
   display: flex;
   min-width: 300px;
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
@@ -105,7 +105,7 @@ form button {
 }
 /* Tablet and below */
 @media (max-width: 969px) {
-  .container {
+  #container {
     flex-direction: column-reverse;
     height: auto;
   }
