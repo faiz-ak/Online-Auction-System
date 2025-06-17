@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="dashboard.css" />
   </head>
   <body>
-    <div class="dashboard">
+    <div class="dashboard" id="check">
       <!-- Sidebar -->
       <div class="sidebar">
         <div class="sidebar-header">
@@ -24,23 +24,20 @@
             class="navbar-brand d-flex align-items-center fw-bold fs-5 text-dark gap-2"
             href="index.html"
           >
-            <img src="assets/logo.png" alt="Logo" style="width: 30px" />
+            <img src="assets/logo.png" alt="Logo" style="width: 40px" />
             BidSmart
           </a>
         </div>
         <div class="sidebar-menu">
           <div class="menu-item active">Dashboard</div>
-          <div class="menu-item">Home</div>
+          <div onclick="window.location.href='index.html'" class="menu-item">Home</div>
         </div>
       </div>
 
       <!-- Main Content -->
       <div class="main-content">
         <div class="header">
-          <h3>Dashboard</h3>
-          <div class="user-profile">
-            <span id="username"></span>
-          </div>
+         Welcome,&nbsp;<span id="username" style="font-weight: 600;font-size: 25px;"></span>
         </div>
 
         <!-- Stats Cards -->
@@ -76,9 +73,7 @@
            <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" style="max-width: 300px;">
                   <div class="modal-content">
-                      <div class="modal-body p-0">
-                          <iframe src="additem.html" frameborder="0" width="100%" height="400" style="border: none;"></iframe>
-                      </div>
+                          <iframe src="additem.html" frameborder="0" width="350px" height="530" style="border: none;"></iframe>
                   </div>
             </div>
           </div>
@@ -102,7 +97,7 @@
         </div>
       </div>
     </div>
-    <div style="position: fixed; top: 10%; right: 20px; z-index: 9999">
+    <div style="position: fixed; top: 5%; right: 20px; z-index: 9999">
       <div
         id="warningToast"
         class="toast align-items-center text-bg-warning border-0"
@@ -122,9 +117,28 @@
           ></button>
         </div>
       </div>
+          <div id="successToast" class="toast align-items-center text-bg-white border-0 mb-2" role="alert" aria-live="assertive" aria-atomic="true" style="width: 22em;">
+      <div class="d-flex">
+        <div class="toast-body" style="color: #252525;font-weight: 600;">
+          ✅ Bid Updated!
+        </div>
+        <button type="button" class="btn-close btn-close-black me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+    const checking = document.getElementById("check")
+    const username = localStorage.getItem("name");
+
+  if(!username){
+   logout();
+  }
+function logout() {
+    localStorage.clear();
+     window.location.href="Signup.html";
+  }
+
       let details = document.getElementById("details");
 
       // Load bid states and amounts from localStorage
@@ -300,8 +314,8 @@
                 bidData[rowIndex]?.amount || ""
               }">
               <div class="mt-3 text-end">
-                <button id="submitBid" class="btn btn-success">Submit</button>
-                <button id="cancelBid" class="btn btn-danger">Cancel</button>
+                <button id="submitBid" class="btn btn-success" style="background-color: #4cc8bc; border: none;">Submit</button>
+                <button id="cancelBid" class="btn btn-outline-success">Cancel</button>
               </div>
             </div>
           </div>
@@ -329,7 +343,7 @@
             $row.find(".update-bid").css("display", "inline-block");
           }
           $("#bidPopup, #overlay").remove();
-
+           showSuccessToast();
           // Update total bids display
           let updateamt = Object.entries(bidData);
           let sum = 0;
@@ -344,8 +358,13 @@
           document.getElementsByClassName(
             "valuebid"
           )[0].innerHTML = `Rs. ${finalsum.toFixed(2)}`;
+        
         });
-
+  function showSuccessToast() {
+    const toastEl = document.getElementById('successToast');
+    const toast = new bootstrap.Toast(toastEl);
+    toast.show();
+  }
         $("#cancelBid, #overlay").on("click", function () {
           $("#bidPopup, #overlay").remove();
         });

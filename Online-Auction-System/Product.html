@@ -81,7 +81,7 @@
 
  const username = localStorage.getItem('name');
   const authDiv = document.getElementById('auth-buttons');
-
+ 
   if (username) {
     authDiv.innerHTML = `
       <button onclick="logout()" type="button" class="btn btn-danger" style="background-color: #4cc8bc; border: none;">Logout</button>
@@ -93,13 +93,13 @@
     `;
   }
 
-  function logout() {
-    localStorage.removeItem('name');
+function logout() {
+    localStorage.clear();
     window.location.reload(); 
   }
 
 
-
+ 
   const container = document.getElementById('product');
 
   function showSkeletonLoaders(count = 8) {
@@ -134,21 +134,46 @@
     try {
       const response = await fetch(`https://dummyjson.com/products`);
       const data = await response.json();
-      const products = data.products;
+      let products = data.products;
+      console.log(products);
       
-      container.innerHTML = products.map((product) => {
-        return `
-        <div class="card">
-          <img src="${product.thumbnail}" class="card-img" alt="${product.title}" style="height: 220px; object-fit: cover;">
-          <div class="card-body">
-            <p class="card-title" style="min-height: 3em;font-weight:bold;" >${product.title}</p>
-            <p class="card-text">Category: <strong>${product.category}</strong></p>
-            <p class="card-text">Current bid: <strong>&#8377;${(product.price* 89).toFixed(2)}</strong></p>
-          <button onclick="senddata('${product.thumbnail}', '${product.title}', '${product.category}', ${(product.price* 89).toFixed(2)})" class="btn btn-outline-dark w-100">Bid Now</button>
-          </div>
-        </div>
-        `;
-      }).join('');
+       let localItems = JSON.parse(localStorage.getItem("items")) || [];
+   console.log(localItems);
+   
+    let localProducts = localItems.map((item) => ({
+      thumbnail: item.image ,
+      title: item.name || "Untitled",
+      category: item.Category || "Custom",
+     price: (item.current_bid / 89).toFixed(2) 
+    }));
+
+    // Merge: Custom products appear first
+    products = [ ...localProducts, ...products];
+
+    container.innerHTML = products.map((product, index) => {
+  const isCustom = index < localProducts.length; 
+  const badge = isCustom
+    ? `<span class="badge bg-danger position-absolute top-10 start-0 m-3">New</span>`
+    : '';
+
+  return `
+    <div class="card position-relative">
+      ${badge}
+      ${product.thumbnail
+        ? `<img src="${product.thumbnail}" class="card-img" alt="${product.title}" style="height: 220px; object-fit: cover;">`
+        : `<svg class="bd-placeholder-img card-img-top" width="100%" height="220">
+             <rect width="100%" height="100%" fill="#dee2e6"></rect>
+           </svg>`}
+      <div class="card-body">
+        <p class="card-title" style="min-height: 3em;font-weight:bold;">${product.title}</p>
+        <p class="card-text">Category: <strong>${product.category}</strong></p>
+        <p class="card-text">Current bid: <strong>&#8377;${(product.price * 89).toFixed(2)}</strong></p>
+        <button id="bid-btn" onclick="senddata('${product.thumbnail}', '${product.title}', '${product.category}', ${(product.price * 89).toFixed(2)})" class="btn btn-outline-dark w-100 ">Bid Now</button>
+      </div>
+    </div>
+  `;
+}).join('');
+
     } catch (err) {
       container.innerHTML = `<p class="text-danger">Error loading products.</p>`;
       console.error("Error fetching products:", err);
