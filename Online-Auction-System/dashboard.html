@@ -4,185 +4,244 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auction Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="dashboard.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="dashboard.css" />
   </head>
- <body>
-     <div class="dashboard">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-header">
-                   <a class="navbar-brand d-flex align-items-center fw-bold fs-5 text-dark gap-2" href="index.html">
-        <img src="assets/logo.png" alt="Logo" style="width: 30px;"> BidSmart
-      </a>
-            </div>
-            <div class="sidebar-menu">
-                <div class="menu-item active">Dashboard</div>
-                <div class="menu-item">Home</div>
-            </div>
+  <body>
+    <div class="dashboard">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <a
+            class="navbar-brand d-flex align-items-center fw-bold fs-5 text-dark gap-2"
+            href="index.html"
+          >
+            <img src="assets/logo.png" alt="Logo" style="width: 30px" />
+            BidSmart
+          </a>
+        </div>
+        <div class="sidebar-menu">
+          <div class="menu-item active">Dashboard</div>
+          <div class="menu-item">Home</div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <div class="header">
+          <h3>Dashboard</h3>
+          <div class="user-profile">
+            <span id="username"></span>
+          </div>
         </div>
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <div class="header">
-                <h3>Dashboard</h3>
-                <div class="user-profile">
-                    <span id="username"></span>
-                </div>
-            </div>
-
-            <!-- Stats Cards -->
-            <div class="stats-container">
-                <div class="stat-card">
-                    <h3>Active Auctions</h3>
-                    <div class="value"></div>
-                </div>
-                <div class="stat-card">
-                    <h3>Total Bids</h3>
-                    <div class="value valuebid"></div>
-                </div>
-                <div class="stat-card">
-                    <h3>New Users</h3>
-                    <div class="value">64</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Revenue</h3>
-                    <div class="value">Rs. 8,420.00</div>
-                </div>
-            </div>
-
-            <!-- Recent Auctions Table -->
-            <div class="recent-auctions">
-                <div class="auctions-header">
-                    <h2>Recent Auctions</h2>
-                    <!-- <button class="btn btn-primary">View All</button> -->
-                </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Item Display</th>
-                            <th>Item Name</th>
-                            <th>Category</th>
-                            <th>Current Bid</th>
-                            <th>Bids</th>
-                            <th>Ends In</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                   <tbody id="details"></tbody>
-                </table>
-            </div>
+        <!-- Stats Cards -->
+        <div class="stats-container">
+          <div class="stat-card">
+            <h3>Active Auctions</h3>
+            <div class="value"></div>
+          </div>
+          <div class="stat-card">
+            <h3>Total Bids</h3>
+            <div class="value valuebid"></div>
+          </div>
+          <div class="stat-card">
+            <h3>New Users</h3>
+            <div class="value">64</div>
+          </div>
+          <div class="stat-card">
+            <h3>Revenue</h3>
+            <div class="value">Rs. 8,420.00</div>
+          </div>
         </div>
+
+        <!-- Recent Auctions Table -->
+        <div class="recent-auctions">
+          <div class="auctions-header">
+            <h2>Recent Auctions</h2>
+            <!-- <button class="btn btn-primary">View All</button> -->
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Item Display</th>
+                <th>Item Name</th>
+                <th>Category</th>
+                <th>Current Bid</th>
+                <th>Bids</th>
+                <th>Ends In</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="details"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  
+    <div style="position: fixed; top: 10%; right: 20px; z-index: 9999">
+      <div
+        id="warningToast"
+        class="toast align-items-center text-bg-warning border-0"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="d-flex">
+          <div class="toast-body" style="color: #252525; font-weight: 600">
+            ⚠️ Your bid must exceed the current bidding amount !
+          </div>
+          <button
+            type="button"
+            class="btn-close btn-close-black me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      let details = document.getElementById("details");
 
-     let details = document.getElementById("details");
-  function getRandomTimeLimit() {
-  const hours = Math.floor(Math.random() * (72 - 10 + 1)) + 10;
-  const minutes = Math.floor(Math.random() * 60); 
-  return `${hours}h ${minutes.toString().padStart(2, '0')}m`;
-}
+      function getRandomTimeLimit() {
+        const hours = Math.floor(Math.random() * (72 - 10 + 1)) + 10;
+        const minutes = Math.floor(Math.random() * 60);
+        return `${hours}h ${minutes.toString().padStart(2, "0")}m`;
+      }
 
+      // Load bid states and amounts from localStorage
+      let bidData = JSON.parse(localStorage.getItem("bidData")) || {};
 
+      // Function to save bid data to localStorage
+      function saveBidData() {
+        localStorage.setItem("bidData", JSON.stringify(bidData));
+      }
 
-    const local = JSON.parse(localStorage.getItem("data"));
-    console.log(local.length);
-    document.getElementById('username').innerText = JSON.parse(localStorage.getItem("name"));
-    const valueauction = document.getElementsByClassName("value")[0].innerText=local.length;
-    let sum=0;
-local.forEach(item => {
-  sum += item.current_bid;
-});
+      const local = JSON.parse(localStorage.getItem("data"));
+      console.log(local.length);
+      document.getElementById("username").innerText = JSON.parse(
+        localStorage.getItem("name")
+      );
+      const valueauction = (document.getElementsByClassName(
+        "value"
+      )[0].innerText = local.length);
+      let sum = 0;
+      local.forEach((item) => {
+        sum += item.current_bid;
+      });
 
-document.getElementsByClassName('valuebid')[0].innerHTML = `Rs. ${sum.toFixed(2)}`;
-    console.log(local);
-     details.innerHTML = local.map((data) =>{
-         const timeLimit = getRandomTimeLimit(); 
-         const bid = Math.floor(Math.random() * 100);
-        return`
-       <tr>
-      <td><img src="${data.image}" alt="${data.name}" style="max-width:50px"></td>
-      <td>${data.name}</td>
-      <td>${data.category}</td>
-      <td>Rs. ${data.current_bid}</td>
-      <td>${bid}</td>
-      <td>${timeLimit}</td>
-      <td><span class="status active">Active</span></td>
-      <td>
-        <button type="button" class="btn btn-primary bid-now">Set Bid</button>
-        <button type="button" class="btn btn-primary update-bid">Update Bid</button>
-      </td>
-    </tr>
-         `;
-       }).join('');
-    $(document).ready(function() {
-        // Timer Functionality (unchanged from your original code)
+      document.getElementsByClassName(
+        "valuebid"
+      )[0].innerHTML = `Rs. ${sum.toFixed(2)}`;
+      console.log(local);
+      details.innerHTML = local
+        .map((data, index) => {
+          const timeLimit = getRandomTimeLimit();
+          const bid = Math.floor(Math.random() * 100);
+          // Use bidData to determine initial button visibility
+          const hasBid = bidData[index] ? true : false;
+          return `
+            <tr>
+                <td><img src="${data.image}" alt="${
+            data.name
+          }" style="max-width:50px"></td>
+                <td>${data.name}</td>
+                <td>${data.category}</td>
+                <td>Rs. ${
+                  bidData[index]?.amount || data.current_bid.toFixed(2)
+                }</td>
+                <td>${bidData[index]?.bids || bid}</td>
+                <td>${timeLimit}</td>
+                <td><span class="status active">Active</span></td>
+                <td>
+                    <button type="button" class="btn btn-primary bid-now" style="display: ${
+                      hasBid ? "none" : "inline-block"
+                    };">Set Bid</button>
+                    <button type="button" class="btn btn-primary update-bid" style="display: ${
+                      hasBid ? "inline-block" : "none"
+                    };">Update Bid</button>
+                </td>
+            </tr>
+        `;
+        })
+        .join("");
+
+      $(document).ready(function () {
+        // Timer Functionality (unchanged)
         function parseTimeToSeconds(timeStr) {
-            if (timeStr === 'Ended' || timeStr === 'Pending') return -1;
-            let seconds = 0;
-            const daysMatch = timeStr.match(/(\d+)d/);
-            const hoursMatch = timeStr.match(/(\d+)h/);
-            const minutesMatch = timeStr.match(/(\d+)m/);
-            if (daysMatch) seconds += parseInt(daysMatch[1]) * 24 * 60 * 60;
-            if (hoursMatch) seconds += parseInt(hoursMatch[1]) * 60 * 60;
-            if (minutesMatch) seconds += parseInt(minutesMatch[1]) * 60;
-            return seconds;
+          if (timeStr === "Ended" || timeStr === "Pending") return -1;
+          const timeParts = timeStr.split(":");
+          if (timeParts.length !== 3) return -1;
+
+          const [hrs, mins, secs] = timeParts.map((val) => parseInt(val, 10));
+          return hrs * 3600 + mins * 60 + secs;
         }
 
         function formatTime(seconds) {
-            if (seconds <= 0) return 'Ended';
-            const days = Math.floor(seconds / (24 * 60 * 60));
-            seconds %= (24 * 60 * 60);
-            const hours = Math.floor(seconds / (60 * 60));
-            seconds %= (60 * 60);
-            const minutes = Math.floor(seconds / 60);
-            let result = '';
-            if (days > 0) result += `${days}d `;
-            if (hours > 0 || days > 0) result += `${hours}h `;
-            result += `${minutes}m`;
-            return result.trim();
+          if (seconds <= 0) return "Ended";
+          const hours = Math.floor(seconds / 3600);
+          seconds %= 3600;
+          const minutes = Math.floor(seconds / 60);
+          const secs = seconds % 60;
+
+          return `${hours
+            .toString()
+            .padStart(
+              2,
+              "0"
+            )}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
         }
 
         function updateTimers() {
-            $('table tbody tr').each(function() {
-                const $row = $(this);
-                const $endsInCell = $row.find('td:nth-child(6)');
-                const $statusCell = $row.find('td:nth-child(7) span');
-                let timeText = $endsInCell.text().trim();
+          $("table tbody tr").each(function () {
+            const $row = $(this);
+            const $endsInCell = $row.find("td:nth-child(6)");
+            const $statusCell = $row.find("td:nth-child(7) span");
+            let timeText = $endsInCell.text().trim();
 
-                if (timeText !== 'Ended' && timeText !== 'Pending') {
-                    let seconds = parseTimeToSeconds(timeText);
-                    if (seconds > 0) {
-                        seconds--;
-                        $endsInCell.text(formatTime(seconds));
-                        if (seconds <= 0) {
-                            $endsInCell.text('Ended');
-                            $statusCell.text('Ended').removeClass('active pending').addClass('ended');
-                            $row.find('.bid-now, .update-bid').prop('disabled', true);
-                        }
-                    }
+            if (timeText !== "Ended" && timeText !== "Pending") {
+              let seconds = parseTimeToSeconds(timeText);
+              if (seconds > 0) {
+                seconds--;
+                $endsInCell.text(formatTime(seconds));
+                if (seconds <= 0) {
+                  $endsInCell.text("Ended");
+                  $statusCell
+                    .text("Ended")
+                    .removeClass("active pending")
+                    .addClass("ended");
+                  $row.find(".bid-now, .update-bid").prop("disabled", true);
                 }
-            });
+              }
+            }
+          });
         }
-
         setInterval(updateTimers, 1000);
 
         // Popup and Bid Functionality
         function showBidPopup(itemName, currentBid, rowIndex, isBidNow) {
-            // Remove existing popup if any
-            $('#bidPopup, #overlay').remove();
+          $("#bidPopup, #overlay").remove();
 
-            // Create popup HTML
-            const popupHtml = `
+          const popupHtml = `
                 <div id="bidPopup" class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Place Bid for ${itemName}</h5>
+                        <h5 class="card-title">${
+                          isBidNow ? "Place Bid" : "Update Bid"
+                        } for ${itemName}</h5>
                         <p class="card-text">Current Bid: ${currentBid}</p>
                         <label for="bidAmount" class="form-label">New Bid Amount (Rs.):</label>
-                        <input type="number" id="bidAmount" class="form-control" min="0" step="0.01">
+                        <input type="number" id="bidAmount" class="form-control" min="0" step="0.01" value="${
+                          bidData[rowIndex]?.amount || ""
+                        }">
                         <div class="mt-3 text-end">
                             <button id="submitBid" class="btn btn-success">Submit</button>
                             <button id="cancelBid" class="btn btn-danger">Cancel</button>
@@ -191,58 +250,64 @@ document.getElementsByClassName('valuebid')[0].innerHTML = `Rs. ${sum.toFixed(2)
                 </div>
                 <div id="overlay"></div>
             `;
-            $('body').append(popupHtml);
+          $("body").append(popupHtml);
 
-            // Handle submit bid
-            $('#submitBid').on('click', function() {
-                console.log('Submit bid clicked');
-                const newBid = parseFloat($('#bidAmount').val());
-                const currentBidValue = parseFloat(currentBid.replace('Rs. ', '').replace(',', ''));
-                if (isNaN(newBid) || newBid <= currentBidValue) {
-                    alert('Please enter a bid amount higher than the current bid.');
-                    return;
-                }
-                // Update bid amount and bid count
-                const $row = $(`table tbody tr:eq(${rowIndex})`);
-                $row.find('td:nth-child(4)').text(`Rs. ${newBid.toFixed(2)}`);
-                const currentBids = parseInt($row.find('td:nth-child(5)').text());
-                $row.find('td:nth-child(5)').text(currentBids + 1);
-                // Disable Bid Now button if this was a Bid Now action
-                if (isBidNow) {
-                    console.log('Disabling Bid Now button for row:', rowIndex);
-                    $row.find('.bid-now').prop('disabled', true);
-                }
-                $('#bidPopup, #overlay').remove();
-            });
+          $("#submitBid").on("click", function () {
+            const newBid = parseFloat($("#bidAmount").val());
+            const currentBidValue = parseFloat(
+              currentBid.replace("Rs. ", "").replace(",", "")
+            );
+            if (isNaN(newBid) || newBid <= currentBidValue) {
+              showWarningToast();
+              return;
+            }
+            const $row = $(`table tbody tr:eq(${rowIndex})`);
+            $row.find("td:nth-child(4)").text(`Rs. ${newBid.toFixed(2)}`);
+            const currentBids = parseInt($row.find("td:nth-child(5)").text());
+            $row.find("td:nth-child(5)").text(currentBids + 1);
+            // Save bid data
+            bidData[rowIndex] = {
+              amount: newBid,
+              bids: currentBids + 1,
+            };
+            saveBidData();
+            // Toggle buttons
+            if (isBidNow) {
+              $row.find(".bid-now").css("display", "none");
+              $row.find(".update-bid").css("display", "inline-block");
+            }
+            $("#bidPopup, #overlay").remove();
+          });
 
-            // Handle cancel
-            $('#cancelBid, #overlay').on('click', function() {
-                console.log('Cancel bid or overlay clicked');
-                $('#bidPopup, #overlay').remove();
-            });
+          $("#cancelBid, #overlay").on("click", function () {
+            $("#bidPopup, #overlay").remove();
+          });
         }
 
         // Bid Now and Update Bid button clicks
-        $(document).on('click', '.bid-now, .update-bid', function(e) {
-            e.preventDefault();
-            console.log('Button clicked:', $(this).text());
-            const $row = $(this).closest('tr');
-            const itemName = $row.find('td:nth-child(2)').text();
-            const currentBid = $row.find('td:nth-child(4)').text();
-            const rowIndex = $row.index();
-            const status = $row.find('td:nth-child(7) span').text().trim();
-            const isBidNow = $(this).hasClass('bid-now');
+        $(document).on("click", ".bid-now, .update-bid", function (e) {
+          e.preventDefault();
+          const $row = $(this).closest("tr");
+          const itemName = $row.find("td:nth-child(2)").text();
+          const currentBid = $row.find("td:nth-child(4)").text();
+          const rowIndex = $row.index();
+          const status = $row.find("td:nth-child(7) span").text().trim();
+          const isBidNow = $(this).hasClass("bid-now");
 
-            if (status === 'Active') {
-                showBidPopup(itemName, currentBid, rowIndex, isBidNow);
-            } else {
-                alert('Bidding is not available for this auction.');
-            }
+          if (status === "Active") {
+            showBidPopup(itemName, currentBid, rowIndex, isBidNow);
+          } else {
+            alert("Bidding is not available for this auction.");
+          }
         });
 
-        // Debug: Log to confirm script is running
-        console.log('BidSmart script loaded. Buttons should be clickable.');
-    });
-</script>
- </body>     
+        console.log("BidSmart script loaded. Buttons should be clickable.");
+      });
+      function showWarningToast() {
+        const toastEl = document.getElementById("warningToast");
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
+      }
+    </script>
+  </body>
 </html>
