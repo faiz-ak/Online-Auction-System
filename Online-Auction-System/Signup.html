@@ -49,10 +49,11 @@
 </body>
 <script>
     const form = document.getElementById("signupform");
-
     form.addEventListener("submit", function(e) {
       e.preventDefault();
       showSuccessToast();
+       const name = document.getElementById('name').value;
+       localStorage.setItem("name", JSON.stringify(name));
       setTimeout(() => {
         window.location.href = 'login.html';
       }, 2000);

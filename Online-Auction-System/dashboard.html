@@ -5,295 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auction Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
- @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-
-:root {
-    --primary: #4a6bff;
-    --secondary: #f8f9fa;
-    --success: #28a745;
-    --warning: #ffc107;
-    --danger: #dc3545;
-}
-
-body {
-    font-family: "Montserrat", sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-}
-
-.dashboard {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    min-height: 100vh;
-}
-
-/* Sidebar */
-.sidebar {
-    background-color: #4cc8bc;
-    color: white;
-    padding: 20px 0;
-}
-
-.sidebar-header {
-    display: flex;
-    justify-content: center;
-    padding: 0 20px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.sidebar-menu {
-    padding: 20px;
-}
-
-.menu-item {
-    padding: 10px;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
-
-.menu-item {
-    appearance: none;
-    background-color: transparent;
-    border-radius: 15px;
-    box-sizing: border-box;
-    color: black;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: normal;
-    margin: 0;
-    min-height: 60px;
-    min-width: 0;
-    outline: none;
-    padding: 16px 24px;
-    text-align: center;
-    text-decoration: none;
-    transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    width: 100%;
-    will-change: transform;
-}
-
-.menu-item:disabled {
-    pointer-events: none;
-}
-
-.menu-item:hover {
-    color: #4cc8bc;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-    transform: translateY(-2px);
-}
-
-.menu-item:active {
-    box-shadow: none;
-    transform: translateY(0);
-}
-
-/* Main Content */
-.main-content {
-    padding: 20px;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-.search-bar {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    width: 300px;
-}
-
-.user-profile {
-    display: flex;
-    align-items: center;
-}
-
-.user-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #ddd;
-    margin-right: 10px;
-}
-
-/* Stats Cards */
-.stats-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.stat-card {
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-.stat-card h3 {
-    margin-top: 0;
-    color: #666;
-    font-size: 14px;
-}
-
-.stat-card .value {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 10px 0;
-}
-
-.stat-card .change {
-    font-size: 12px;
-}
-
-.change.positive {
-    color: var(--success);
-}
-
-.change.negative {
-    color: var(--danger);
-}
-
-/* Recent Auctions */
-.recent-auctions {
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-.auctions-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    display: flexbox;
-}
-
-th,
-td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #eee;
-}
-
-th {
-    background-color: #f8f9fa;
-    font-weight: 500;
-}
-
-.status {
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 500;
-}
-
-.status.active {
-    background-color: #e6f7ee;
-    color: var(--success);
-}
-
-.status.ended {
-    background-color: #fee;
-    color: var(--danger);
-}
-
-.status.pending {
-    background-color: #fff8e6;
-    color: var(--warning);
-}
-
-.btn {
-    padding: 8px 15px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-}
-
-.btn-primary {
-    background-color: #4cc8bc;
-    color: white;
-}
-
-.btn-primary { 
-    margin-right: 5px; 
-}
-
-.btn-primary:disabled { 
-    background: #6c757d; 
-    cursor: not-allowed; 
-}
-
-.chart-container {
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    margin-top: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    height: 300px;
-}
-
-img {
-    height: 50px;
-}
-
-#bidPopup { 
-    position: fixed; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    background: #ffffff; 
-    padding: 20px; 
-    border-radius: 8px; 
-    box-shadow: 0 0 15px rgba(0,0,0,0.3); 
-    z-index: 1000; 
-    width: 300px; 
-}
-
-#bidPopup .btn { 
-    margin-right: 10px; 
-}
-
-#overlay { 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    background: rgba(0,0,0,0.5); 
-    z-index: 999; 
-}
-
-    </style>
+    <link rel="stylesheet" href="dashboard.css">
   </head>
  <body>
      <div class="dashboard">
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar-header">
-                <h2>BidSmart</h2>
+                   <a class="navbar-brand d-flex align-items-center fw-bold fs-5 text-dark gap-2" href="index.html">
+        <img src="assets/logo.png" alt="Logo" style="width: 30px;"> BidSmart
+      </a>
             </div>
             <div class="sidebar-menu">
                 <div class="menu-item active">Dashboard</div>
@@ -304,9 +25,9 @@ img {
         <!-- Main Content -->
         <div class="main-content">
             <div class="header">
-                <h1>Dashboard</h1>
+                <h3>Dashboard</h3>
                 <div class="user-profile">
-                    <span>Admin User</span>
+                    <span id="username"></span>
                 </div>
             </div>
 
@@ -314,11 +35,11 @@ img {
             <div class="stats-container">
                 <div class="stat-card">
                     <h3>Active Auctions</h3>
-                    <div class="value">142</div>
+                    <div class="value"></div>
                 </div>
                 <div class="stat-card">
                     <h3>Total Bids</h3>
-                    <div class="value">1,284</div>
+                    <div class="value valuebid"></div>
                 </div>
                 <div class="stat-card">
                     <h3>New Users</h3>
@@ -341,7 +62,7 @@ img {
                         <tr>
                             <th>Item Display</th>
                             <th>Item Name</th>
-                            <th>Seller</th>
+                            <th>Category</th>
                             <th>Current Bid</th>
                             <th>Bids</th>
                             <th>Ends In</th>
@@ -349,83 +70,54 @@ img {
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <img src="https://media.istockphoto.com/id/1156218302/photo/top-view-of-vintage-cameras-on-white-background.jpg?s=612x612&w=0&k=20&c=LBHmMbv1VoBPaynZ1v9ho6vUU-2jhxh1IZ2toXBJ0js=" alt="Vintage Camera">
-                            </td>
-                            <td>Vintage Camera</td>
-                            <td>user123</td>
-                            <td>Rs. 245.00</td>
-                            <td>18</td>
-                            <td>55h 00m</td>
-                            <td><span class="status active">Active</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary bid-now">Bid Now</button>
-                                <button type="button" class="btn btn-primary update-bid">Update Bid</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="https://nolanryanfoundation.org/cdn/shop/products/autographedmajor.jpg?v=1677096047" alt="Signed Baseball">
-                            </td>
-                            <td>Signed Baseball</td>
-                            <td>collector22</td>
-                            <td>Rs. 1,150.00</td>
-                            <td>32</td>
-                            <td>5h 30m</td>
-                            <td><span class="status active">Active</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary bid-now">Bid Now</button>
-                                <button type="button" class="btn btn-primary update-bid">Update Bid</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="https://aarsunwoods.com/wp-content/uploads/2020/03/Antique-Wooden-Chair-UH-CHR-0016-jpg.webp" alt="Antique Chair">
-                            </td>
-                            <td>Antique Chair</td>
-                            <td>antiques4u</td>
-                            <td>Rs. 320.00</td>
-                            <td>7</td>
-                            <td>Ended</td>
-                            <td><span class="status ended">Ended</span></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="https://www.thesprucecrafts.com/thmb/hubPX6u0Np3v1GghPx1S5BT_HLA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/US-Type-Coins-Major-56a1794e5f9b58b7d0bfa597.jpg" alt="Rare Coin Collection">
-                            </td>
-                            <td>Rare Coin Collection</td>
-                            <td>numismatist</td>
-                            <td>Rs. 2,800.00</td>
-                            <td>24</td>
-                            <td>1d 3h</td>
-                            <td><span class="status active">Active</span></td>
-                            <td>
-                                <button type="button" class="btn btn-primary bid-now">Bid Now</button>
-                                <button type="button" class="btn btn-primary update-bid">Update Bid</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="https://m.media-amazon.com/images/I/51AHHmX-17L.jpg" alt="Smartphone">
-                            </td>
-                            <td>Smartphone</td>
-                            <td>techguy</td>
-                            <td>Rs. 180.00</td>
-                            <td>9</td>
-                            <td>Pending</td>
-                            <td><span class="status pending">Pending</span></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
+                   <tbody id="details"></tbody>
                 </table>
             </div>
         </div>
     </div>
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+  
+
+     let details = document.getElementById("details");
+  function getRandomTimeLimit() {
+  const hours = Math.floor(Math.random() * (72 - 10 + 1)) + 10;
+  const minutes = Math.floor(Math.random() * 60); 
+  return `${hours}h ${minutes.toString().padStart(2, '0')}m`;
+}
+
+
+
+    const local = JSON.parse(localStorage.getItem("data"));
+    console.log(local.length);
+    document.getElementById('username').innerText = JSON.parse(localStorage.getItem("name"));
+    const valueauction = document.getElementsByClassName("value")[0].innerText=local.length;
+    let sum=0;
+local.forEach(item => {
+  sum += item.current_bid;
+});
+
+document.getElementsByClassName('valuebid')[0].innerHTML = `Rs. ${sum.toFixed(2)}`;
+    console.log(local);
+     details.innerHTML = local.map((data) =>{
+         const timeLimit = getRandomTimeLimit(); 
+         const bid = Math.floor(Math.random() * 100);
+        return`
+       <tr>
+      <td><img src="${data.image}" alt="${data.name}" style="max-width:50px"></td>
+      <td>${data.name}</td>
+      <td>${data.category}</td>
+      <td>Rs. ${data.current_bid}</td>
+      <td>${bid}</td>
+      <td>${timeLimit}</td>
+      <td><span class="status active">Active</span></td>
+      <td>
+        <button type="button" class="btn btn-primary bid-now">Set Bid</button>
+        <button type="button" class="btn btn-primary update-bid">Update Bid</button>
+      </td>
+    </tr>
+         `;
+       }).join('');
     $(document).ready(function() {
         // Timer Functionality (unchanged from your original code)
         function parseTimeToSeconds(timeStr) {

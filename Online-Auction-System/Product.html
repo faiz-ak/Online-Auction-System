@@ -45,11 +45,10 @@
           </li>
 
           <!-- Button -->
-           <div class="d-flex align-items-center gap-3">
-        <button onclick="window.location.href='Signup.html'" id="signup" type="button" class="btn btn-outline-success" >Signup</button>
-
-           <button onclick="window.location.href='login.html'" type="button" class="btn btn-success" style="background-color: #4cc8bc; border: none;">Login</button>
+         <div class="d-flex align-items-center gap-3" id="auth-buttons">
+  <!-- Buttons will be injected here via JavaScript -->
 </div>
+
         </ul>
       </div>
     </div>
@@ -79,6 +78,28 @@
 </div>
 
 <script>
+
+ const username = localStorage.getItem('name');
+  const authDiv = document.getElementById('auth-buttons');
+
+  if (username) {
+    authDiv.innerHTML = `
+      <button onclick="logout()" type="button" class="btn btn-danger" style="background-color: #4cc8bc; border: none;">Logout</button>
+    `;
+  } else {
+    authDiv.innerHTML = `
+      <button onclick="window.location.href='Signup.html'" id="signup" type="button" class="btn btn-outline-success">Signup</button>
+      <button onclick="window.location.href='login.html'" type="button" class="btn btn-success" style="background-color: #4cc8bc; border: none;">Login</button>
+    `;
+  }
+
+  function logout() {
+    localStorage.removeItem('name');
+    window.location.reload(); 
+  }
+
+
+
   const container = document.getElementById('product');
 
   function showSkeletonLoaders(count = 8) {
@@ -120,10 +141,10 @@
         <div class="card">
           <img src="${product.thumbnail}" class="card-img" alt="${product.title}" style="height: 220px; object-fit: cover;">
           <div class="card-body">
-            <h5 class="card-title">${product.title}</h5>
+            <p class="card-title" style="min-height: 3em;font-weight:bold;" >${product.title}</p>
             <p class="card-text">Category: <strong>${product.category}</strong></p>
-            <p class="card-text">Current bid: <strong>&#8377;${product.price}</strong></p>
-          <button onclick="senddata('${product.thumbnail}', '${product.title}', '${product.category}', ${product.price})" class="btn btn-outline-dark w-100">Bid Now</button>
+            <p class="card-text">Current bid: <strong>&#8377;${(product.price* 89).toFixed(2)}</strong></p>
+          <button onclick="senddata('${product.thumbnail}', '${product.title}', '${product.category}', ${(product.price* 89).toFixed(2)})" class="btn btn-outline-dark w-100">Bid Now</button>
           </div>
         </div>
         `;

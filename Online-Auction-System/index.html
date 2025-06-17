@@ -46,10 +46,8 @@
           </li>
 
           <!-- Button -->
-           <div class="d-flex align-items-center gap-3">
-        <button onclick="window.location.href='Signup.html'" id="signup" type="button" class="btn btn-outline-success" >Signup</button>
-
-           <button onclick="window.location.href='login.html'" type="button" class="btn btn-success" style="background-color: #4cc8bc; border: none;">Login</button>
+         <div class="d-flex align-items-center gap-3" id="auth-buttons">
+  <!-- Buttons will be injected here via JavaScript -->
 </div>
         </ul>
       </div>
@@ -68,4 +66,24 @@
   </div>
 
 </body>
+<script>
+    const username = localStorage.getItem('name');
+  const authDiv = document.getElementById('auth-buttons');
+
+  if (username) {
+    authDiv.innerHTML = `
+      <button onclick="logout()" type="button" class="btn btn-danger" style="background-color: #4cc8bc; border: none;">Logout</button>
+    `;
+  } else {
+    authDiv.innerHTML = `
+      <button onclick="window.location.href='Signup.html'" id="signup" type="button" class="btn btn-outline-success">Signup</button>
+      <button onclick="window.location.href='login.html'" type="button" class="btn btn-success" style="background-color: #4cc8bc; border: none;">Login</button>
+    `;
+  }
+
+  function logout() {
+    localStorage.removeItem('name');
+    window.location.reload(); 
+  }
+</script>
 </html>
