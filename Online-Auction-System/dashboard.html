@@ -112,11 +112,6 @@
     <script>
       let details = document.getElementById("details");
 
-      function getRandomTimeLimit() {
-        const hours = Math.floor(Math.random() * (72 - 10 + 1)) + 10;
-        const minutes = Math.floor(Math.random() * 60);
-        return `${hours}h ${minutes.toString().padStart(2, "0")}m`;
-      }
 
       // Load bid states and amounts from localStorage
       let bidData = JSON.parse(localStorage.getItem("bidData")) || {};
@@ -134,18 +129,25 @@
       const valueauction = (document.getElementsByClassName(
         "value"
       )[0].innerText = local.length);
-      let sum = 0;
-      local.forEach((item) => {
-        sum += item.current_bid;
-      });
 
-      document.getElementsByClassName(
-        "valuebid"
-      )[0].innerHTML = `Rs. ${sum.toFixed(2)}`;
-      console.log(local);
+
+    //  Total bids calculation 
+let updateamt = Object.entries(bidData);
+     let sum = 0;
+
+updateamt.forEach(([key, value]) => {
+  sum += value.amount;
+});
+let finalsum=0;
+local.forEach((item)=>{
+ finalsum += item.current_bid ;
+});
+finalsum += sum;
+console.log(`Total Amount: Rs. ${finalsum}`);
+document.getElementsByClassName("valuebid")[0].innerHTML = `Rs. ${finalsum.toFixed(2)}`;
+
       details.innerHTML = local
         .map((data, index) => {
-          const timeLimit = getRandomTimeLimit();
           const bid = Math.floor(Math.random() * 100);
           // Use bidData to determine initial button visibility
           const hasBid = bidData[index] ? true : false;
@@ -160,7 +162,7 @@
                   bidData[index]?.amount || data.current_bid.toFixed(2)
                 }</td>
                 <td>${bidData[index]?.bids || bid}</td>
-                <td>${timeLimit}</td>
+                <td>22h 1m</td>
                 <td><span class="status active">Active</span></td>
                 <td>
                     <button type="button" class="btn btn-primary bid-now" style="display: ${
