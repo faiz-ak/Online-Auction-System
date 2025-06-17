@@ -18,7 +18,6 @@
   <body>
     <div class="dashboard">
       <!-- Sidebar -->
-      <!-- Sidebar -->
       <div class="sidebar">
         <div class="sidebar-header">
           <a
@@ -118,24 +117,130 @@
       // Load bid states and amounts from localStorage
       let bidData = JSON.parse(localStorage.getItem("bidData")) || {};
 
+      // Load auction data from localStorage
+      let local = JSON.parse(localStorage.getItem("data")) || [];
+
+      // Load or initialize timers from localStorage
+      let auctionTimers =
+        JSON.parse(localStorage.getItem("auctionTimers")) || {};
+
       // Function to save bid data to localStorage
       function saveBidData() {
         localStorage.setItem("bidData", JSON.stringify(bidData));
       }
 
-      const local = JSON.parse(localStorage.getItem("data"));
-      console.log(local.length);
+      // Function to save timers to localStorage
+      function saveTimers() {
+        localStorage.setItem("auctionTimers", JSON.stringify(auctionTimers));
+      }
+
+      // Initialize timers for all auctions
+      function initializeTimers() {
+        local.forEach((item, index) => {
+          if (
+            !auctionTimers[index] ||
+            auctionTimers[index].endTime < Date.now()
+          ) {
+            // Generate random time between 1-24 hours for new or expired auctions
+            const randomHours = Math.floor(Math.random() * 23) + 1;
+            const randomMinutes = Math.floor(Math.random() * 60);
+            const randomSeconds = Math.floor(Math.random() * 60);
+            auctionTimers[index] = {
+              endTime:
+                Date.now() +
+                randomHours * 3600000 +
+                randomMinutes * 60000 +
+                randomSeconds * 1000,
+              status: "Active",
+            };
+          }
+        });
+        saveTimers();
+      }
+
+      // Format time in hh:mm:ss
+      function formatTime(ms) {
+        if (ms <= 0) return "00:00:00";
+        const hours = Math.floor(ms / 3600000)
+          .toString()
+          .padStart(2, "0");
+        const minutes = Math.floor((ms % 3600000) / 60000)
+          .toString()
+          .padStart(2, "0");
+        const seconds = Math.floor((ms % 60000) / 1000)
+          .toString()
+          .padStart(2, "0");
+        return `${hours}:${minutes}:${seconds}`;
+      }
+
+      // Populate the table with auction data
+      function updateTable() {
+        details.innerHTML = local
+          .map((data, index) => {
+            const bid = bidData[index]?.bids || Math.floor(Math.random() * 100);
+            const hasBid = bidData[index] ? true : false;
+            const timeLeft = auctionTimers[index]?.endTime - Date.now();
+            const status = timeLeft > 0 ? "Active" : "Ended";
+            if (auctionTimers[index]) {
+              auctionTimers[index].status = status;
+            }
+            return `
+            <tr>
+              <td><img src="${data.image}" alt="${
+              data.name
+            }" style="max-width:50px"></td>
+              <td>${data.name}</td>
+              <td>${data.category}</td>
+              <td>Rs. ${
+                bidData[index]?.amount || data.current_bid.toFixed(2)
+              }</td>
+              <td>${bid}</td>
+              <td id="timer-${index}">${formatTime(timeLeft)}</td>
+              <td><span class="status ${status.toLowerCase()}">${status}</span></td>
+              <td>
+                <button type="button" class="btn btn-primary bid-now" style="display: ${
+                  hasBid ? "none" : "inline-block"
+                };">Set Bid</button>
+                <button type="button" class="btn btn-primary update-bid" style="display: ${
+                  hasBid ? "inline-block" : "none"
+                };">Update Bid</button>
+              </td>
+            </tr>
+          `;
+          })
+          .join("");
+        saveTimers();
+      }
+
+      // Update timers every second
+      function updateTimers() {
+        local.forEach((_, index) => {
+          const timeLeft = auctionTimers[index]?.endTime - Date.now();
+          const timerElement = document.getElementById(`timer-${index}`);
+          if (timerElement) {
+            timerElement.textContent = formatTime(timeLeft);
+            const status = timeLeft > 0 ? "Active" : "Ended";
+            auctionTimers[index].status = status;
+            const statusElement =
+              timerElement.parentElement.querySelector(".status");
+            if (statusElement) {
+              statusElement.textContent = status;
+              statusElement.className = `status ${status.toLowerCase()}`;
+            }
+          }
+        });
+        saveTimers();
+      }
+
+      // Set username and stats
       document.getElementById("username").innerText = JSON.parse(
         localStorage.getItem("name")
       );
-      const valueauction = (document.getElementsByClassName(
-        "value"
-      )[0].innerText = local.length);
+      document.getElementsByClassName("value")[0].innerText = local.length;
 
-      //  Total bids calculation
+      // Total bids calculation
       let updateamt = Object.entries(bidData);
       let sum = 0;
-
       updateamt.forEach(([key, value]) => {
         sum += value.amount;
       });
@@ -144,170 +249,112 @@
         finalsum += item.current_bid;
       });
       finalsum += sum;
-      console.log(`Total Amount: Rs. ${finalsum}`);
       document.getElementsByClassName(
         "valuebid"
       )[0].innerHTML = `Rs. ${finalsum.toFixed(2)}`;
 
-      details.innerHTML = local
-        .map((data, index) => {
-          const bid = Math.floor(Math.random() * 100);
-          // Use bidData to determine initial button visibility
-          const hasBid = bidData[index] ? true : false;
-          return `
-            <tr>
-                <td><img src="${data.image}" alt="${
-            data.name
-          }" style="max-width:50px"></td>
-                <td>${data.name}</td>
-                <td>${data.category}</td>
-                <td>Rs. ${
-                  bidData[index]?.amount || data.current_bid.toFixed(2)
-                }</td>
-                <td>${bidData[index]?.bids || bid}</td>
-                <td>22h 1m</td>
-                <td><span class="status active">Active</span></td>
-                <td>
-                    <button type="button" class="btn btn-primary bid-now" style="display: ${
-                      hasBid ? "none" : "inline-block"
-                    };">Set Bid</button>
-                    <button type="button" class="btn btn-primary update-bid" style="display: ${
-                      hasBid ? "inline-block" : "none"
-                    };">Update Bid</button>
-                </td>
-            </tr>
+      // Initialize timers and table
+      initializeTimers();
+      updateTable();
+      setInterval(updateTimers, 1000);
+
+      // Function to add new product (called from products page)
+      function addNewProduct(product) {
+        local.push({
+          image: product.image || "placeholder.jpg",
+          name: product.name || "Unnamed Item",
+          category: product.category || "Uncategorized",
+          current_bid: parseFloat(product.startingBid) || 100,
+        });
+        localStorage.setItem("data", JSON.stringify(local));
+        document.getElementsByClassName("value")[0].innerText = local.length;
+        initializeTimers();
+        updateTable();
+      }
+
+      // Popup and Bid Functionality
+      function showBidPopup(itemName, currentBid, rowIndex, isBidNow) {
+        $("#bidPopup, #overlay").remove();
+        const popupHtml = `
+          <div id="bidPopup" class="card">
+            <div class="card-body">
+              <h5 class="card-title">${
+                isBidNow ? "Place Bid" : "Update Bid"
+              } for ${itemName}</h5>
+              <p class="card-text">Current Bid: ${currentBid}</p>
+              <label for="bidAmount" class="form-label">New Bid Amount (Rs.):</label>
+              <input type="number" id="bidAmount" class="form-control" min="0" step="0.01" value="${
+                bidData[rowIndex]?.amount || ""
+              }">
+              <div class="mt-3 text-end">
+                <button id="submitBid" class="btn btn-success">Submit</button>
+                <button id="cancelBid" class="btn btn-danger">Cancel</button>
+              </div>
+            </div>
+          </div>
+          <div id="overlay"></div>
         `;
-        })
-        .join("");
+        $("body").append(popupHtml);
 
-      $(document).ready(function () {
-        // Timer Functionality (unchanged)
-        function parseTimeToSeconds(timeStr) {
-          if (timeStr === "Ended" || timeStr === "Pending") return -1;
-          const timeParts = timeStr.split(":");
-          if (timeParts.length !== 3) return -1;
-
-          const [hrs, mins, secs] = timeParts.map((val) => parseInt(val, 10));
-          return hrs * 3600 + mins * 60 + secs;
-        }
-
-        function formatTime(seconds) {
-          if (seconds <= 0) return "Ended";
-          const hours = Math.floor(seconds / 3600);
-          seconds %= 3600;
-          const minutes = Math.floor(seconds / 60);
-          const secs = seconds % 60;
-
-          return `${hours
-            .toString()
-            .padStart(
-              2,
-              "0"
-            )}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-        }
-
-        function updateTimers() {
-          $("table tbody tr").each(function () {
-            const $row = $(this);
-            const $endsInCell = $row.find("td:nth-child(6)");
-            const $statusCell = $row.find("td:nth-child(7) span");
-            let timeText = $endsInCell.text().trim();
-
-            if (timeText !== "Ended" && timeText !== "Pending") {
-              let seconds = parseTimeToSeconds(timeText);
-              if (seconds > 0) {
-                seconds--;
-                $endsInCell.text(formatTime(seconds));
-                if (seconds <= 0) {
-                  $endsInCell.text("Ended");
-                  $statusCell
-                    .text("Ended")
-                    .removeClass("active pending")
-                    .addClass("ended");
-                  $row.find(".bid-now, .update-bid").prop("disabled", true);
-                }
-              }
-            }
-          });
-        }
-        setInterval(updateTimers, 1000);
-
-        // Popup and Bid Functionality
-        function showBidPopup(itemName, currentBid, rowIndex, isBidNow) {
+        $("#submitBid").on("click", function () {
+          const newBid = parseFloat($("#bidAmount").val());
+          const currentBidValue = parseFloat(
+            currentBid.replace("Rs. ", "").replace(",", "")
+          );
+          if (isNaN(newBid) || newBid <= currentBidValue) {
+            showWarningToast();
+            return;
+          }
+          const $row = $(`table tbody tr:eq(${rowIndex})`);
+          $row.find("td:nth-child(4)").text(`Rs. ${newBid.toFixed(2)}`);
+          const currentBids = parseInt($row.find("td:nth-child(5)").text());
+          $row.find("td:nth-child(5)").text(currentBids + 1);
+          bidData[rowIndex] = { amount: newBid, bids: currentBids + 1 };
+          saveBidData();
+          if (isBidNow) {
+            $row.find(".bid-now").css("display", "none");
+            $row.find(".update-bid").css("display", "inline-block");
+          }
           $("#bidPopup, #overlay").remove();
 
-          const popupHtml = `
-                <div id="bidPopup" class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">${
-                          isBidNow ? "Place Bid" : "Update Bid"
-                        } for ${itemName}</h5>
-                        <p class="card-text">Current Bid: ${currentBid}</p>
-                        <label for="bidAmount" class="form-label">New Bid Amount (Rs.):</label>
-                        <input type="number" id="bidAmount" class="form-control" min="0" step="0.01" value="${
-                          bidData[rowIndex]?.amount || ""
-                        }">
-                        <div class="mt-3 text-end">
-                            <button id="submitBid" class="btn btn-success">Submit</button>
-                            <button id="cancelBid" class="btn btn-danger">Cancel</button>
-                        </div>
-                    </div>
-                </div>
-                <div id="overlay"></div>
-            `;
-          $("body").append(popupHtml);
-
-          $("#submitBid").on("click", function () {
-            const newBid = parseFloat($("#bidAmount").val());
-            const currentBidValue = parseFloat(
-              currentBid.replace("Rs. ", "").replace(",", "")
-            );
-            if (isNaN(newBid) || newBid <= currentBidValue) {
-              showWarningToast();
-              return;
-            }
-            const $row = $(`table tbody tr:eq(${rowIndex})`);
-            $row.find("td:nth-child(4)").text(`Rs. ${newBid.toFixed(2)}`);
-            const currentBids = parseInt($row.find("td:nth-child(5)").text());
-            $row.find("td:nth-child(5)").text(currentBids + 1);
-            // Save bid data
-            bidData[rowIndex] = {
-              amount: newBid,
-              bids: currentBids + 1,
-            };
-            saveBidData();
-            // Toggle buttons
-            if (isBidNow) {
-              $row.find(".bid-now").css("display", "none");
-              $row.find(".update-bid").css("display", "inline-block");
-            }
-            $("#bidPopup, #overlay").remove();
+          // Update total bids display
+          let updateamt = Object.entries(bidData);
+          let sum = 0;
+          updateamt.forEach(([key, value]) => {
+            sum += value.amount;
           });
-
-          $("#cancelBid, #overlay").on("click", function () {
-            $("#bidPopup, #overlay").remove();
+          let finalsum = 0;
+          local.forEach((item) => {
+            finalsum += item.current_bid;
           });
-        }
-
-        // Bid Now and Update Bid button clicks
-        $(document).on("click", ".bid-now, .update-bid", function (e) {
-          e.preventDefault();
-          const $row = $(this).closest("tr");
-          const itemName = $row.find("td:nth-child(2)").text();
-          const currentBid = $row.find("td:nth-child(4)").text();
-          const rowIndex = $row.index();
-          const status = $row.find("td:nth-child(7) span").text().trim();
-          const isBidNow = $(this).hasClass("bid-now");
-
-          if (status === "Active") {
-            showBidPopup(itemName, currentBid, rowIndex, isBidNow);
-          } else {
-            alert("Bidding is not available for this auction.");
-          }
+          finalsum += sum;
+          document.getElementsByClassName(
+            "valuebid"
+          )[0].innerHTML = `Rs. ${finalsum.toFixed(2)}`;
         });
 
-        console.log("BidSmart script loaded. Buttons should be clickable.");
+        $("#cancelBid, #overlay").on("click", function () {
+          $("#bidPopup, #overlay").remove();
+        });
+      }
+
+      // Bid Now and Update Bid button clicks
+      $(document).on("click", ".bid-now, .update-bid", function (e) {
+        e.preventDefault();
+        const $row = $(this).closest("tr");
+        const itemName = $row.find("td:nth-child(2)").text();
+        const currentBid = $row.find("td:nth-child(4)").text();
+        const rowIndex = $row.index();
+        const status = $row.find("td:nth-child(7) span").text().trim();
+        const isBidNow = $(this).hasClass("bid-now");
+
+        if (status === "Active") {
+          showBidPopup(itemName, currentBid, rowIndex, isBidNow);
+        } else {
+          alert("Bidding is not available for this auction.");
+        }
       });
+
       function showWarningToast() {
         const toastEl = document.getElementById("warningToast");
         const toast = new bootstrap.Toast(toastEl);
