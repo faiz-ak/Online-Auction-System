@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="login-signup.css" />
 </head>
 <body>
-    
+  <div id="container"  class=" reverse-layout">
+    <div class="left">
+      <h2>Let's get started</h2>
+      <p>Fill in your details to create an account</p>
+      <form style="margin-top: 1em;">
+        <label>Full Name</label>
+        <input id="name" type="text" placeholder="Your full name" required>
+
+        <label>Email</label>
+        <input id="email" type="email" placeholder="Your email address" required>
+
+        <label>Password</label>
+        <input id="password" type="password" placeholder="Create a password" required>
+
+        <label>Confirm Password</label>
+        <input id="confirm-password" type="password" placeholder="Confirm your password" required>
+
+        <button type="submit">Sign Up</button>
+        <p class="signup-text">Already have an account? <a href="login.html">Log in</a></p>
+      </form>
+    </div>
+    <div class="right">
+      <img src="assets\Sign up-rafiki.png" alt="Sign Up illustration" />
+    </div>
+  </div>
 </body>
 </html>

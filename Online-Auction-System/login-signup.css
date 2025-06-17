@@ -19,6 +19,11 @@ body {
   display: flex;
   min-width: 300px;
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  max-width: 950px; 
+}
+#container.reverse-layout {
+  
+  flex-direction: row-reverse;
 }
 
 .left, .right {
@@ -34,13 +39,13 @@ body {
   gap: 15px;
 }
 
-.left h2 {
+h2 {
   font-size: 2rem;
-  /* margin-bottom: 1rem; */
+
   color: #00bfa6;
 }
 
-#email, #password {
+#email, #password,#name , #password, #confirm-password{
   width: 100%;
   padding: 12px;
   margin: 0.5rem 0;
@@ -64,17 +69,17 @@ form button {
   margin: 1rem 0;
   font-size: 0.85rem;
   color: #6c757d;
-  gap: 0.5rem; /* 👈 Ensures space between label and checkbox */
+  gap: 0.5rem; 
 }
 
 .remember-me label {
-  order: 1; /* 👈 Put label first */
+  order: 1; 
   white-space: nowrap;
 }
 
 .remember-me input[type="checkbox"] {
   order: 2;
-  margin: 0; /* Removes default spacing */
+  margin: 0; 
 }
 
 .signup-text {
@@ -98,16 +103,26 @@ form button {
   
 }
 
-.right img {
-  width: 362px; /* or adjust as needed */
+
+ img {
+  width: 362px; 
   height: auto;
   flex-wrap: wrap;
 }
-/* Tablet and below */
+ .reverse-layout .right {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  padding-top: 0;
+}
+
 @media (max-width: 969px) {
   #container {
     flex-direction: column-reverse;
     height: auto;
+  }
+    #container.reverse-layout {
+    flex-direction: column-reverse;
   }
 
   .right {
@@ -116,14 +131,14 @@ form button {
 
   }
 
-  .right img {
+   img {
     width: 85%;
     max-width: 350px;
     padding-top: 11em;
   }
 }
 
-/* Mobile */
+
 @media (max-width: 575px) {
   .left {
     padding: 1.5rem;
