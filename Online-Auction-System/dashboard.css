@@ -96,6 +96,10 @@ body {
 /* Main Content */
 .main-content {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100vw;
 }
 
 .header {
@@ -141,7 +145,7 @@ body {
 }
 
 .stat-card .value {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
   margin: 10px 0;
 }
@@ -166,7 +170,8 @@ body {
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  width: 100%;
+  min-width: 300px;
+  flex: 1;
   box-sizing: border-box;
 }
 
@@ -178,25 +183,6 @@ body {
   margin-right: 40px;
 }
 
-table {
-  border-collapse: collapse;
-  display: flexbox;
-  width: 100%;
-  table-layout: fixed;
-}
-
-th,
-td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid #eee;
-  box-sizing: border-box;
-}
-
-th {
-  background-color: #f8f9fa;
-  font-weight: 500;
-}
 
 .status {
   padding: 5px 10px;
@@ -250,15 +236,6 @@ th {
 .btn-primary.update-bid-btn {
   padding: 8px 15px;
   font-size: 14px;
-}
-
-.chart-container {
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  margin-top: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  height: 300px;
 }
 
 img {
@@ -358,3 +335,12 @@ img {
         
 
         
+@media (max-width:600px){
+    .stat-card h3 {
+  font-size: 16px;
+}
+
+.stat-card .value {
+  font-size: 18px;
+}
+}

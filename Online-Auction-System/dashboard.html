@@ -18,7 +18,7 @@
   <body>
     <div class="dashboard" id="check">
       <!-- Sidebar -->
-      <div class="sidebar">
+      <div class="sidebar" style="display: none;">
         <div class="sidebar-header">
           <a
             class="navbar-brand d-flex align-items-center fw-bold fs-5 text-dark gap-2"
@@ -78,8 +78,8 @@
             </div>
           </div>
 
-
-          <table>
+<div class="table-responsive">
+          <table class="table">
             <thead>
               <tr>
                 <th>Item Display</th>
@@ -94,6 +94,7 @@
             </thead>
             <tbody id="details"></tbody>
           </table>
+          </div>
         </div>
       </div>
     </div>
@@ -227,10 +228,10 @@ function logout() {
               <td>
                 <button type="button" class="btn btn-primary bid-now" style="display: ${
                   hasBid ? "none" : "inline-block"
-                };">Set Bid</button>
+                }; min-width:7em">Set Bid</button>
                 <button type="button" class="btn btn-primary update-bid" style="display: ${
                   hasBid ? "inline-block" : "none"
-                };">Update Bid</button>
+                };min-width:7em">Update Bid</button>
               </td>
             </tr>
           `;
