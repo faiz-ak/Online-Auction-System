@@ -99,7 +99,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  width: 100vw;
+  width: 100%;
 }
 
 .header {
@@ -179,8 +179,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  margin-right: 40px;
+  padding: 0.5em 0.5em;
+  gap: 1em;
 }
 
 
@@ -343,4 +343,26 @@ img {
 .stat-card .value {
   font-size: 18px;
 }
+.auctions-header h2{
+    font-size: 17px;
+    font-weight: 600;
+}
+.t-header{
+    min-width: 8em;
+}
+.t1-header{
+    min-width: 5em;
+}
+}
+
+@media (max-width:1060px){
+ #sidenav{
+    display: block !important;
+ }
+ .sidebar{
+    display: none;
+ }
+ .main-content{
+    width: 100vw;
+ }
 }

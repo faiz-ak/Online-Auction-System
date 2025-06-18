@@ -63,7 +63,6 @@
 }
 
 .card {
-  background-color: #fff;
   border-radius: 12px;
   padding: 1em 1em;
   min-width: 300px;
@@ -140,4 +139,7 @@
 #Explore{
     padding: 1em 1em !important;
 }
+/* .hero-content{
+    gap: 0.5em;
+} */
 }
