@@ -68,7 +68,7 @@ An interactive and responsive auction platform where users can list products, pl
 
 - **Languages**: HTML5, CSS3, JavaScript (ES6)
 - **Design**: Bootstrap / Custom CSS
-- **Data Handling**: `localStorage`
+- **Data Handling**: `DummyJson Api`,`localStorage`
 
 ---
 
