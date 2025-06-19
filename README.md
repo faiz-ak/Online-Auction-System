@@ -59,8 +59,8 @@ An interactive and responsive auction platform where users can list products, pl
 - Summary cards show:
   - Total active auctions
   - Total bids placed
-  - New users
-  - Estimated revenue
+  - New users (static)
+  - Estimated revenue (static)
 
 ---
 
