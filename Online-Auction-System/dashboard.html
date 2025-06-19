@@ -18,7 +18,7 @@
   <body>
     <div class="dashboard" id="check">
       <!-- Sidebar -->
-      <div class="sidebar">
+   <div class="sidebar">
         <div class="sidebar-header">
           <a
             class="navbar-brand d-flex align-items-center fw-bold fs-5 text-dark gap-2"
@@ -32,12 +32,45 @@
           <div class="menu-item active">Dashboard</div>
           <div onclick="window.location.href='index.html'" class="menu-item">Home</div>
         </div>
+      </div> 
+<nav id="sidenav" class="navbar bg-body-tertiary fixed-top" style="display: none;">
+  <div class="container-fluid">
+    <div style="display: flex; align-items: center;justify-content: space-between; width: 100%;">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+         <div style="font-weight: 600; font-size: medium;">
+         Welcome,&nbsp;<span id="username" style="font-weight: 600;font-size: 23px;"></span>
+        </div>
+</div>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header" style="background: #4cc8bc;">
+         <a
+            class="navbar-brand d-flex align-items-center fw-bold fs-5 text-dark gap-2"
+            href="index.html"
+          >
+            <img src="assets/logo.png" alt="Logo" style="width: 40px" />
+            BidSmart
+          </a>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-
+      <div class="offcanvas-body"style="background: #4cc8bc;" >
+        <ul class="navbar-nav justify-content-center align-items-center flex-grow-2 pe-3">
+          <li class="nav-item">
+            <a class="nav-link active menu-item active" aria-current="page" href="#">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a onclick="window.location.href='index.html'" class="nav-link menu-item" href="#">Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
       <!-- Main Content -->
       <div class="main-content">
         <div class="header">
-         Welcome,&nbsp;<span id="username" style="font-weight: 600;font-size: 25px;"></span>
+         Welcome,&nbsp;<span id="username1" style="font-weight: 600;font-size: 25px;"></span>
         </div>
 
         <!-- Stats Cards -->
@@ -66,7 +99,7 @@
         <div class="recent-auctions">
           <div class="auctions-header">
             <h2>Recent Auctions</h2>
-            <button class="btn btn-primary" id="additem" data-bs-toggle="modal" data-bs-target="#addItemModal">Add Item</button>
+            <button style="min-width: 7em;" class="btn btn-primary" id="additem" data-bs-toggle="modal" data-bs-target="#addItemModal">Add Item</button>
 
           </div>
            <!-- form validation -->
@@ -78,22 +111,23 @@
             </div>
           </div>
 
-
-          <table>
+<div class="table-responsive">
+          <table class="table">
             <thead>
               <tr>
-                <th>Item Display</th>
-                <th>Item Name</th>
-                <th>Category</th>
-                <th>Current Bid</th>
-                <th>Bids</th>
-                <th>Ends In</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th class="t-header">Item Display</th>
+                <th  class="t-header">Item Name</th>
+                <th >Category</th>
+                <th class="t-header">Current Bid</th>
+                <th >Bids</th>
+                <th class="t1-header">Ends In</th>
+                <th >Status</th>
+                <th >Action</th>
               </tr>
             </thead>
             <tbody id="details"></tbody>
           </table>
+          </div>
         </div>
       </div>
     </div>
@@ -227,10 +261,10 @@ function logout() {
               <td>
                 <button type="button" class="btn btn-primary bid-now" style="display: ${
                   hasBid ? "none" : "inline-block"
-                };">Set Bid</button>
+                }; min-width:7em">Set Bid</button>
                 <button type="button" class="btn btn-primary update-bid" style="display: ${
                   hasBid ? "inline-block" : "none"
-                };">Update Bid</button>
+                };min-width:8em">Update Bid</button>
               </td>
             </tr>
           `;
@@ -261,6 +295,9 @@ function logout() {
 
       // Set username and stats
       document.getElementById("username").innerText = JSON.parse(
+        localStorage.getItem("name")
+      );
+         document.getElementById("username1").innerText = JSON.parse(
         localStorage.getItem("name")
       );
       document.getElementsByClassName("value")[0].innerText = local.length;
@@ -400,6 +437,8 @@ function logout() {
         }
       });
 
+
+    //   
     </script>
   </body>
 </html>

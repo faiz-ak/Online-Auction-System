@@ -3,8 +3,10 @@
 # Configuration
 
 BACKUP*DIR="/mnt/c/Users/ajohn/Documents/backups/frontend_archives"
+
 PROJECT_DIR="/home/john/auctionsystem"
 WINDOWS_SHARE="/mnt/c/Users/ajohn/Documents/Online-Auction-System-Update/Online-Auction-System-Update/Online-Auction-System/Online-Auction-System"
+
 LOG_FILE="/home/john/frontend_archive.log"
 TIMESTAMP=$(date +%Y%m%d*%H%M%S)
 ARCHIVE*NAME="frontend_backup*${TIMESTAMP}.tar.gz"
@@ -14,6 +16,9 @@ ARCHIVE*NAME="frontend_backup*${TIMESTAMP}.tar.gz"
 mkdir -p "$PROJECT_DIR" "$BACKUP_DIR"
 if [ $? -ne 0 ]; then
 echo "$(date '+%Y-%m-%d %H:%M:%S') - ERROR: Failed to create directories" >> "$LOG_FILE"
+=======
+
+
 exit 1
 fi
 
@@ -35,6 +40,7 @@ fi
 # Start backup process
 
 log_message "Starting frontend backup process"
+
 
 # Retry logic for sync
 
@@ -72,6 +78,7 @@ check_error "Failed to create temporary directory"
 
 # Copy project files to temporary directory
 
+
 cp -r "$PROJECT_DIR"/*.html "$TEMP_DIR"/ 2>/dev/null || check_error "Failed to copy HTML files"
 cp -r "$PROJECT_DIR"/*.css "$TEMP_DIR"/ 2>/dev/null || check_error "Failed to copy CSS files"
 cp -r "$PROJECT_DIR"/*.md "$TEMP_DIR"/ 2>/dev/null || check_error "Failed to copy Markdown files"
@@ -81,6 +88,7 @@ cp -r "$PROJECT_DIR"/*.md "$TEMP_DIR"/ 2>/dev/null || check_error "Failed to cop
 if [ -d "$PROJECT_DIR/assets" ]; then
 cp -r "$PROJECT_DIR/assets" "$TEMP_DIR"/ 2>/dev/null || check_error "Failed to copy assets directory"
 fi
+
 
 # Create tar.gz archive
 
