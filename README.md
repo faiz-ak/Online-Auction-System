@@ -1,6 +1,6 @@
 # 🧾 Online Auction System
 
-An interactive and responsive auction platform where users can list products, place live bids, and track auction stats — all managed locally using browser storage. Built with HTML, CSS, and JavaScript.
+An interactive and responsive auction system where users can seamlessly list products, place real-time bids, and track auction statistics. The platform operates entirely on the client side, utilizing LocalStorage for data management, and simulates backend functionality using a dummy JSON API for fetching product data.
 
 ---
 
@@ -11,7 +11,7 @@ An interactive and responsive auction platform where users can list products, pl
 - 🗂 Product listing page (pre-auction items)
 - 📊 Real-time auction dashboard
 - 💬 Toast notifications for bid actions & validation
-- 📦 LocalStorage and DummyJson Api for fetching products
+- 📦 Persistent data storage using LocalStorage and Dummy JSON API integration for simulating product fetch
 - ⏱ Countdown timers for each auction
 - 📉 Skeleton loaders and empty state handling
 - 📈 Dashboard summary cards
@@ -28,7 +28,7 @@ An interactive and responsive auction platform where users can list products, pl
 - On success, redirected to the **Product Listing** page.
 
 ### 3. **Product Listing (Pre-Auction Items)**
-- Lists all products fetched from `localStorage`.
+- Lists all products fetched from `DummyJson Api`,`localStorage`.
 - Each product includes image, name, category, bid price, and a **"Bid Now"** button.
 - On clicking **Bid Now**, the item moves to the **Dashboard** for live bidding.
 
