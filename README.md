@@ -11,7 +11,7 @@ An interactive and responsive auction platform where users can list products, pl
 - 🗂 Product listing page (pre-auction items)
 - 📊 Real-time auction dashboard
 - 💬 Toast notifications for bid actions & validation
-- 📦 LocalStorage integration for persistence
+- 📦 LocalStorage and DummyJson Api for fetching products
 - ⏱ Countdown timers for each auction
 - 📉 Skeleton loaders and empty state handling
 - 📈 Dashboard summary cards
