@@ -7,10 +7,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 import java.util.logging.Logger;
-import com.auction.logger.Auctionlogger;
+import com.auction.logger.AuctionLoggerConfig;
 
 public class LogArchiver {
-    private static final Logger LOGGER = Auctionlogger.getLogger();
+    private static final Logger LOGGER = AuctionLoggerConfig.getLogger();
     private static final String LOG_DIR = "logs/current";
     private static final String ARCHIVE_DIR = "logs/archive";
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
