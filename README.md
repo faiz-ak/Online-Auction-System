@@ -106,5 +106,5 @@ An interactive and responsive auction system where users can seamlessly list pro
 
 ### 🔹 Clone the Repo
 ```bash
-git clone https://github.com/your-username/online-auction-system.git
+git clone https://github.com/faiz-ak/online-auction-system.git
 cd online-auction-system
