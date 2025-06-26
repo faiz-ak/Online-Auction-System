@@ -20,7 +20,7 @@ An interactive and responsive auction system where users can seamlessly list pro
 
 ---
 
-## 🧩 Flow Overview
+## 🧩 Flow Overview [FRONTEND]
 
 ### 1. Landing Page
 - Users visit the home page and navigate to **Sign Up** / **Login**.
