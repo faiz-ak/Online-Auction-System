@@ -1,6 +1,6 @@
 //FAIZAN
 package com.auction.dao;
-import com.auction.model.RecordClass.User;
+import com.auction.model.RecordClass.Users;
 import com.auction.util.DBUtil;
 
 import java.sql.Connection;
@@ -9,12 +9,12 @@ import java.sql.SQLException;
 
 public class UserDao {
 
-    public void RegisterUser(User user){
+    public void RegisterUser(Users user){
         try{
 //            Connection established
             Connection con = DBUtil.getConnection();
 //            Inserting user
-            String sql = "INSERT INTO User (user_id, name, email) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO Users (user_id, name, email) VALUES (?, ?, ?)";
 //            prepared statement for executing dynamic queries
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 

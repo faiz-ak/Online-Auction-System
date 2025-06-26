@@ -6,8 +6,8 @@ import com.auction.dao.TransactionDao;
 import com.auction.dao.UserDao;
 import com.auction.model.RecordClass.AuctionItem;
 import com.auction.model.RecordClass.Bid;
-import com.auction.model.RecordClass.User;
-import com.auction.model.RecordClass.Transaction;
+import com.auction.model.RecordClass.Users;
+import com.auction.model.RecordClass.PlacedTransaction;
 import com.auction.util.LogArchiver;
 
 import java.time.LocalDateTime;
@@ -22,7 +22,7 @@ public class Main {
         scheduler.scheduleAtFixedRate(LogArchiver::archiveLogs, 0, 7, TimeUnit.DAYS);
 
         // Register a user
-        User user = new User(1, "John Doe", "john@example.com");
+        Users user = new Users(1, "John Doe", "john@example.com");
         new UserDao().RegisterUser(user);
 
         // Create and insert an auction item using DAO
@@ -43,13 +43,10 @@ public class Main {
         itemDao.displayAllAuctionItems();
 
         // Place bids
-        Bid bid1 = new Bid(1, user.user_id(), item.item_id(), 200.0, LocalDateTime.now());
+        Bid bid1 = new Bid(3, user.user_id(), item.item_id(), 300.0, LocalDateTime.now());
         new BidDao().placeBid(bid1);
 
-        Bid bid2 = new Bid(2, user.user_id(), item.item_id(), 250.0, LocalDateTime.now().plusSeconds(10));
-        new BidDao().placeBid(bid2);
-
-        Transaction transaction = new Transaction(1, item.item_id(), user.user_id(), 250.0, LocalDateTime.now().plusMinutes(1));
+        PlacedTransaction transaction = new PlacedTransaction(1, item.item_id(), user.user_id(), 250.0, LocalDateTime.now().plusMinutes(1));
         new TransactionDao().placeTransaction(transaction);
 
 

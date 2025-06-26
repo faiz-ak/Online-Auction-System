@@ -9,7 +9,7 @@ public class AuctionItemDao {
 
     // Insert Auction Item
     public void insertAuctionItem(AuctionItem item) {
-        String sql = "INSERT INTO Auction_Item (item_id, title, category, start_price) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO AuctionItem (item_id, title, category, start_price) VALUES (?, ?, ?, ?)";
 
         try {
             Connection con = DBUtil.getConnection();
@@ -28,7 +28,7 @@ public class AuctionItemDao {
 
     // Update Auction Item
     public void updateAuctionItem(AuctionItem item) {
-        String sql = "UPDATE Auction_Item SET title = ?, category = ?, start_price = ? WHERE item_id = ?";
+        String sql = "UPDATE AuctionItem SET title = ?, category = ?, start_price = ? WHERE item_id = ?";
 
         try {
             Connection con = DBUtil.getConnection();
@@ -52,7 +52,7 @@ public class AuctionItemDao {
 
     // Display ALL auction items
     public void displayAllAuctionItems() {
-        String sql = "SELECT * FROM Auction_Item";
+        String sql = "SELECT * FROM AuctionItem";
 
         try {
             Connection con = DBUtil.getConnection();

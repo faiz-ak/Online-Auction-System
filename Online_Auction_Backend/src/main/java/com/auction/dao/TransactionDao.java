@@ -2,7 +2,7 @@
 package com.auction.dao;
 
 import com.auction.util.DBUtil;
-import com.auction.model.RecordClass.Transaction;
+import com.auction.model.RecordClass.PlacedTransaction;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,11 +11,11 @@ import java.sql.Timestamp;
 
 public class TransactionDao {
 
-    public void placeTransaction(Transaction transaction) {
+    public void placeTransaction(PlacedTransaction transaction) {
 
         try {
             Connection con = DBUtil.getConnection();
-            String sql = "INSERT INTO Transaction (transaction_id, item_id, buyer_id, amount, transaction_time) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO PlacedTransaction (transaction_id, item_id, buyer_id, amount, transaction_time) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
             preparedStatement.setInt(1, transaction.transaction_id());
