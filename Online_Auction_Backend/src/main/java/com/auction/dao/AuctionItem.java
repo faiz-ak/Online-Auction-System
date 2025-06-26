@@ -9,17 +9,15 @@ public class AuctionItemDao {
 
     // Insert Auction Item
     public void insertAuctionItem(AuctionItem item) {
-        String sql = "INSERT INTO auction_items (item_id, name, category, starting_price, end_time, seller_id) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO auction_items (item_id, title, category, start_price) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             Connection con = DBUtil.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, item.id());
-            ps.setString(2, item.name());
+            ps.setInt(1, item.item_id());
+            ps.setString(2, item.title());
             ps.setString(3, item.category());
-            ps.setDouble(4, item.startingPrice());
-            ps.setTimestamp(5, Timestamp.valueOf(item.endTime()));
-            ps.setInt(6, item.sellerId());
+            ps.setDouble(4, item.start_price());
 
             ps.executeUpdate();
             System.out.println("Auction item inserted: " + item.name());
@@ -30,22 +28,22 @@ public class AuctionItemDao {
 
     // Update Auction Item
     public void updateAuctionItem(AuctionItem item) {
-        String sql = "UPDATE auction_items SET name = ?, category = ?, starting_price = ?, WHERE item_id = ?";
+        String sql = "UPDATE auction_items SET title = ?, category = ?, start_price = ?, WHERE item_id = ?";
 
         try {
             Connection con = DBUtil.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setString(1, item.name());
+            ps.setString(1, item.title());
             ps.setString(2, item.category());
-            ps.setDouble(3, item.startingPrice());
-            ps.setInt(5, item.id());
+            ps.setDouble(3, item.start_price());
+            ps.setInt(5, item.item_id());
 
             int rows = ps.executeUpdate();
             if (rows > 0) {
-                System.out.println("Auction item updated: " + item.name());
+                System.out.println("Auction item updated: " + item.title());
             } else {
-                System.out.println("No item found with ID: " + item.id());
+                System.out.println("No item found with ID: " + item.item_id());
             }
         } catch (SQLException e) {
             System.out.println("Error updating auction item: " + e.getMessage());
@@ -65,7 +63,7 @@ public class AuctionItemDao {
                 System.out.println("Item ID: " + rs.getInt("item_id"));
                 System.out.println("Name: " + rs.getString("name"));
                 System.out.println("Category: " + rs.getString("category"));
-                System.out.println("Starting Price: $" + rs.getDouble("starting_price"));
+                System.out.println("Starting Price: $" + rs.getDouble("start_price"));
             }
 
         } catch (SQLException e) {

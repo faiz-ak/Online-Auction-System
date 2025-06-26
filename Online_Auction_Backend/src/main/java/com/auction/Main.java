@@ -24,16 +24,6 @@ public class Main {
         User user = new User(1, "John Doe", "john@example.com");
         new UserDao().RegisterUser(user);
 
-        // Place bids
-        Bid bid1 = new Bid(1, user.id(), item.id(), 200.0, LocalDateTime.now());
-        new BidDao().placeBid(bid1);
-
-        Bid bid2 = new Bid(2, user.id(), item.id(), 250.0, LocalDateTime.now().plusSeconds(10));
-        new BidDao().placeBid(bid2);
-
-        Transaction transaction = new Transaction(1, item.id(), user.id(), 250.0, LocalDateTime.now().plusMinutes(1));
-        new TransactionDao().placeTransaction(transaction);
-
         // Create and insert an auction item using DAO
         AuctionItemDao itemDao = new AuctionItemDao();
         AuctionItem item = new AuctionItem(1, "Vintage Watch", "Luxury Watch", 100.0, LocalDateTime.now().plusDays(1), user.id());
@@ -50,5 +40,17 @@ public class Main {
         // Display again after update
         System.out.println("\n🔍 After Update:");
         itemDao.displayAllAuctionItems();
+
+        // Place bids
+        Bid bid1 = new Bid(1, user.user_id(), item.item_id(), 200.0, LocalDateTime.now());
+        new BidDao().placeBid(bid1);
+
+        Bid bid2 = new Bid(2, user.user_id(), item.item_id(), 250.0, LocalDateTime.now().plusSeconds(10));
+        new BidDao().placeBid(bid2);
+
+        Transaction transaction = new Transaction(1, item.item_id(), user.user_id(), 250.0, LocalDateTime.now().plusMinutes(1));
+        new TransactionDao().placeTransaction(transaction);
+
+
     }
 }

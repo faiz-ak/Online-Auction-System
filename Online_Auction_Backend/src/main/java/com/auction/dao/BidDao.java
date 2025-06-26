@@ -19,14 +19,14 @@ public class BidDao {
             String sql = "INSERT INTO bids (bid_id, user_id, item_id, amount, bid_time) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
-            preparedStatement.setInt(1, bid.id());
-            preparedStatement.setInt(2, bid.userId());
-            preparedStatement.setInt(3, bid.itemId());
+            preparedStatement.setInt(1, bid.bid_id());
+            preparedStatement.setInt(2, bid.user_id());
+            preparedStatement.setInt(3, bid.item_id());
             preparedStatement.setDouble(4, bid.amount());
-            preparedStatement.setTimestamp(5, Timestamp.valueOf(bid.bidTime()));
+            preparedStatement.setTimestamp(5, Timestamp.valueOf(bid.bid_time()));
 
             preparedStatement.executeUpdate();
-            System.out.println("Bid placed by User ID: " + bid.userId());
+            System.out.println("Bid placed by User ID: " + bid.user_id());
 
         } catch (SQLException e) {
             System.out.println("DB Error during bid: " + e.getMessage());

@@ -18,7 +18,7 @@ public class UserDao {
 //            prepared statement for executing dynamic queries
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
-            preparedStatement.setInt(1, user.id());
+            preparedStatement.setInt(1, user.user_id());
             preparedStatement.setString(2, user.name());
             preparedStatement.setString(3, user.email());
 
