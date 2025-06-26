@@ -30,7 +30,7 @@ public class Main {
         itemDao.insertAuctionItem(item);
 
         // Display all auction items
-        System.out.println("\n🔍 Before Update:");
+        System.out.println("\nBefore Update:");
         itemDao.displayAllAuctionItems();
 
         // Update auction item
@@ -38,7 +38,7 @@ public class Main {
         itemDao.updateAuctionItem(updatedItem);
 
         // Display again after update
-        System.out.println("\n🔍 After Update:");
+        System.out.println("\nAfter Update:");
         itemDao.displayAllAuctionItems();
 
         // Place bids

@@ -16,7 +16,7 @@ public class BidDao {
 
         try {
             Connection con = DBUtil.getConnection();
-            String sql = "INSERT INTO bids (bid_id, user_id, item_id, amount, bid_time) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Bid (bid_id, user_id, item_id, amount, bid_time) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
             preparedStatement.setInt(1, bid.bid_id());
