@@ -26,6 +26,8 @@ public class UserDao {
             System.out.println("User inserted: " + user.name());
         } catch (SQLException e) {
             System.out.println("DB Error during registering user: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("General Error during DB connection: " + e.getMessage());
         }
     }
 }

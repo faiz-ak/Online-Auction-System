@@ -29,6 +29,8 @@ public class TransactionDao {
 
         } catch (SQLException e) {
             System.out.println("DB Error during transaction: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("General Error during DB connection: " + e.getMessage());
         }
     }
 }

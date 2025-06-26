@@ -30,6 +30,8 @@ public class BidDao {
 
         } catch (SQLException e) {
             System.out.println("DB Error during bid: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("General Error during DB connection: " + e.getMessage());
         }
     }
 }

@@ -2,6 +2,7 @@ package com.auction;
 
 import com.auction.dao.AuctionItemDao;
 import com.auction.dao.BidDao;
+import com.auction.dao.TransactionDao;
 import com.auction.dao.UserDao;
 import com.auction.model.RecordClass.AuctionItem;
 import com.auction.model.RecordClass.Bid;
@@ -26,7 +27,7 @@ public class Main {
 
         // Create and insert an auction item using DAO
         AuctionItemDao itemDao = new AuctionItemDao();
-        AuctionItem item = new AuctionItem(1, "Vintage Watch", "Luxury Watch", 100.0, LocalDateTime.now().plusDays(1), user.id());
+        AuctionItem item = new AuctionItem(1, "Vintage Watch", "Luxury Watch", 100.0);
         itemDao.insertAuctionItem(item);
 
         // Display all auction items
@@ -34,7 +35,7 @@ public class Main {
         itemDao.displayAllAuctionItems();
 
         // Update auction item
-        AuctionItem updatedItem = new AuctionItem(1, "Vintage Gold Watch", "Antique Gold Watch", 150.0, LocalDateTime.now().plusDays(2), user.id());
+        AuctionItem updatedItem = new AuctionItem(1, "Vintage Gold Watch", "Antique Gold Watch", 150.0);
         itemDao.updateAuctionItem(updatedItem);
 
         // Display again after update
