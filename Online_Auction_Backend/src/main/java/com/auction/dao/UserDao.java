@@ -14,13 +14,11 @@ public class UserDao {
 //            Connection established
             Connection con = DBUtil.getConnection();
 //            Inserting user
-            String sql = "INSERT INTO Users (user_id, name, email) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO Users (name, email) VALUES (?, ?)";
 //            prepared statement for executing dynamic queries
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-
-            preparedStatement.setInt(1, user.user_id());
-            preparedStatement.setString(2, user.name());
-            preparedStatement.setString(3, user.email());
+            preparedStatement.setString(1, user.name());
+            preparedStatement.setString(2, user.email());
 
             preparedStatement.executeUpdate();
             System.out.println("User inserted: " + user.name());

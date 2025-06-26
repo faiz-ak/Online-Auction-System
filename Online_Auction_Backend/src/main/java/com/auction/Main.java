@@ -26,26 +26,27 @@ public class Main {
         new UserDao().RegisterUser(user);
 
         // Create and insert an auction item using DAO
-        AuctionItemDao itemDao = new AuctionItemDao();
         AuctionItem item = new AuctionItem(1, "Vintage Watch", "Luxury Watch", 100.0);
-        itemDao.insertAuctionItem(item);
+        new AuctionItemDao().insertAuctionItem(item);
 
         // Display all auction items
         System.out.println("\nBefore Update:");
-        itemDao.displayAllAuctionItems();
+        new AuctionItemDao().displayAllAuctionItems();
 
         // Update auction item
-        AuctionItem updatedItem = new AuctionItem(1, "Vintage Gold Watch", "Antique Gold Watch", 150.0);
-        itemDao.updateAuctionItem(updatedItem);
+        AuctionItem updatedItem = new AuctionItem(1,"Vintage Gold Watch", "Antique Gold Watch", 150.0);
+        new AuctionItemDao().updateAuctionItem(updatedItem);
 
         // Display again after update
         System.out.println("\nAfter Update:");
-        itemDao.displayAllAuctionItems();
+        new AuctionItemDao().displayAllAuctionItems();
 
         // Place bids
-        Bid bid1 = new Bid(3, user.user_id(), item.item_id(), 300.0, LocalDateTime.now());
+        Bid bid1 = new Bid(1, user.user_id(), item.item_id(), 300.0, LocalDateTime.now());
         new BidDao().placeBid(bid1);
-
+       // Display Bid
+        System.out.println("\nBid Placed Details:");
+        new BidDao().displayBid(bid1);
         PlacedTransaction transaction = new PlacedTransaction(1, item.item_id(), user.user_id(), 250.0, LocalDateTime.now().plusMinutes(1));
         new TransactionDao().placeTransaction(transaction);
 

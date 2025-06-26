@@ -1,18 +1,18 @@
 CREATE TABLE Users(
-    user_id INT PRIMARY KEY,
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL
+    email VARCHAR(100)  NOT NULL
 );
 
 CREATE TABLE AuctionItem(
-    item_id INT PRIMARY KEY,
+    item_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     category VARCHAR(50) NOT NULL,
     start_price DECIMAL(10, 2) NOT NULL
 );
 
 CREATE TABLE Bid(
-    bid_id INT PRIMARY KEY,
+    bid_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     item_id INT NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE Bid(
 );
 
 CREATE TABLE PlacedTransaction(
-    transaction_id INT PRIMARY KEY,
+    transaction_id INT AUTO_INCREMENT PRIMARY KEY,
     item_id INT NOT NULL,
     buyer_id INT NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
