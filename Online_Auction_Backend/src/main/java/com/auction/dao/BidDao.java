@@ -13,12 +13,13 @@ public class BidDao {
 
         try {
             Connection con = DBUtil.getConnection();
-            String sql = "INSERT INTO Bid (user_id, item_id, amount, bid_time) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO Bid (bid_id, user_id, item_id, amount, bid_time) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setInt(1, bid.user_id());
-            preparedStatement.setInt(2, bid.item_id());
-            preparedStatement.setDouble(3, bid.amount());
-            preparedStatement.setTimestamp(4, Timestamp.valueOf(bid.bid_time()));
+            preparedStatement.setInt(1, bid.bid_id());
+            preparedStatement.setInt(2, bid.user_id());
+            preparedStatement.setInt(3, bid.item_id());
+            preparedStatement.setDouble(4, bid.amount());
+            preparedStatement.setTimestamp(5, Timestamp.valueOf(bid.bid_time()));
 
             preparedStatement.executeUpdate();
             System.out.println("Bid placed by User ID: " + bid.user_id());

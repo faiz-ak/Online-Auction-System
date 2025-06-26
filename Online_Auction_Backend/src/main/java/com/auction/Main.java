@@ -11,6 +11,7 @@ import com.auction.model.RecordClass.PlacedTransaction;
 import com.auction.util.LogArchiver;
 
 import java.time.LocalDateTime;
+import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -21,35 +22,104 @@ public class Main {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(LogArchiver::archiveLogs, 0, 7, TimeUnit.DAYS);
 
-        // Register a user
-        Users user = new Users(1, "John Doe", "john@example.com");
-        new UserDao().RegisterUser(user);
+        Scanner sc = new Scanner(System.in);
 
-        // Create and insert an auction item using DAO
-        AuctionItem item = new AuctionItem(1, "Vintage Watch", "Luxury Watch", 100.0);
-        new AuctionItemDao().insertAuctionItem(item);
+        UserDao userDao = new UserDao();
+        AuctionItemDao itemDao = new AuctionItemDao();
+        BidDao bidDao = new BidDao();
+        TransactionDao transactionDao = new TransactionDao();
 
-        // Display all auction items
-        System.out.println("\nBefore Update:");
-        new AuctionItemDao().displayAllAuctionItems();
+        // Insert multiple Users
+        System.out.print("How many users to add? ");
+        int ucount = sc.nextInt();
+        for (int i = 0; i < ucount; i++) {
+            System.out.print("Enter user_id: ");
+            int uid = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Enter name: ");
+            String uname = sc.nextLine();
+            System.out.print("Enter email: ");
+            String email = sc.nextLine();
 
-        // Update auction item
-        AuctionItem updatedItem = new AuctionItem(1,"Vintage Gold Watch", "Antique Gold Watch", 150.0);
-        new AuctionItemDao().updateAuctionItem(updatedItem);
+            Users user = new Users(uid, uname, email);
+            userDao.RegisterUser(user);
+        }
 
-        // Display again after update
-        System.out.println("\nAfter Update:");
-        new AuctionItemDao().displayAllAuctionItems();
+        // Insert multiple Auction Items
+        System.out.print("\nHow many auction items to add? ");
+        int acount = sc.nextInt();
+        for (int i = 0; i < acount; i++) {
+            System.out.print("Enter item_id: ");
+            int itemId = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Enter title: ");
+            String title = sc.nextLine();
+            System.out.print("Enter category: ");
+            String category = sc.nextLine();
+            System.out.print("Enter start_price: ");
+            double price = sc.nextDouble();
 
-        // Place bids
-        Bid bid1 = new Bid(1, user.user_id(), item.item_id(), 300.0, LocalDateTime.now());
-        new BidDao().placeBid(bid1);
-       // Display Bid
-        System.out.println("\nBid Placed Details:");
-        new BidDao().displayBid(bid1);
-        PlacedTransaction transaction = new PlacedTransaction(1, item.item_id(), user.user_id(), 250.0, LocalDateTime.now().plusMinutes(1));
-        new TransactionDao().placeTransaction(transaction);
+            AuctionItem item = new AuctionItem(itemId, title, category, price);
+            itemDao.insertAuctionItem(item);
+        }
 
+        // Update one item (optional)
+        System.out.println("\nUpdate an item? (1 for yes): ");
+        int updateChoice = sc.nextInt();
+        if (updateChoice == 1) {
+            System.out.print("Enter item_id to update: ");
+            int itemId = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Enter new title: ");
+            String newTitle = sc.nextLine();
+            System.out.print("Enter new category: ");
+            String newCat = sc.nextLine();
+            System.out.print("Enter new price: ");
+            double newPrice = sc.nextDouble();
 
+            AuctionItem updatedItem = new AuctionItem(itemId, newTitle, newCat, newPrice);
+            itemDao.updateAuctionItem(updatedItem);
+        }
+
+        // Display all items
+        System.out.println("\nAll Auction Items:");
+        itemDao.displayAllAuctionItems();
+
+        // Place multiple bids
+        System.out.print("\nHow many bids to place? ");
+        int bcount = sc.nextInt();
+        for (int i = 0; i < bcount; i++) {
+            System.out.print("Enter bid_id: ");
+            int bidId = sc.nextInt();
+            System.out.print("Enter user_id: ");
+            int userId = sc.nextInt();
+            System.out.print("Enter item_id: ");
+            int itemId = sc.nextInt();
+            System.out.print("Enter bid amount: ");
+            double amount = sc.nextDouble();
+
+            Bid bid = new Bid(bidId, userId, itemId, amount, LocalDateTime.now());
+            bidDao.placeBid(bid);
+        }
+
+        // Place multiple transactions
+        System.out.print("\nHow many transactions to place? ");
+        int tcount = sc.nextInt();
+        for (int i = 0; i < tcount; i++) {
+            System.out.print("Enter transaction_id: ");
+            int tid = sc.nextInt();
+            System.out.print("Enter item_id: ");
+            int itemId = sc.nextInt();
+            System.out.print("Enter buyer_id: ");
+            int buyerId = sc.nextInt();
+            System.out.print("Enter amount: ");
+            double tamount = sc.nextDouble();
+
+            PlacedTransaction pt = new PlacedTransaction(tid, itemId, buyerId, tamount, LocalDateTime.now());
+            transactionDao.placeTransaction(pt);
+        }
+
+        System.out.println("\nAll operations completed.");
+        sc.close();
     }
 }
