@@ -94,3 +94,47 @@ Jun 27, 2025 10:26:24 AM com.auction.util.LogArchiver lambda$archiveLogs$1
 SEVERE: Error archiving auction.log: logs\current\auction.log: The process cannot access the file because it is being used by another process
 Jun 27, 2025 10:26:24 AM com.auction.util.LogArchiver archiveLogs
 INFO: Created archive: logs/archive/2025-06-27/logs_2025-06-27.zip
+Jun 27, 2025 11:58:32 PM com.auction.util.LogArchiver lambda$archiveLogs$1
+SEVERE: Error archiving auction.log: logs\current\auction.log: The process cannot access the file because it is being used by another process
+Jun 27, 2025 11:58:32 PM com.auction.util.LogArchiver archiveLogs
+INFO: Created archive: logs/archive/2025-06-27/logs_2025-06-27.zip
+Jun 28, 2025 12:33:42 AM com.auction.util.LogArchiver lambda$archiveLogs$1
+SEVERE: Error archiving auction.log: logs\current\auction.log: The process cannot access the file because it is being used by another process
+Jun 28, 2025 12:33:42 AM com.auction.util.LogArchiver archiveLogs
+INFO: Created archive: logs/archive/2025-06-28/logs_2025-06-28.zip
+Jun 28, 2025 12:33:58 AM com.auction.util.LogArchiver lambda$archiveLogs$1
+SEVERE: Error archiving auction.log: logs\current\auction.log: The process cannot access the file because it is being used by another process
+Jun 28, 2025 12:33:58 AM com.auction.util.LogArchiver archiveLogs
+INFO: Created archive: logs/archive/2025-06-28/logs_2025-06-28.zip
+Jun 28, 2025 12:35:20 AM com.auction.util.LogArchiver lambda$archiveLogs$1
+SEVERE: Error archiving auction.log: logs\current\auction.log: The process cannot access the file because it is being used by another process
+Jun 28, 2025 12:35:20 AM com.auction.util.LogArchiver archiveLogs
+INFO: Created archive: logs/archive/2025-06-28/logs_2025-06-28.zip
+Jun 28, 2025 12:37:58 AM com.auction.util.LogArchiver lambda$archiveLogs$1
+SEVERE: Error archiving auction.log: logs\current\auction.log: The process cannot access the file because it is being used by another process
+Jun 28, 2025 12:37:58 AM com.auction.util.LogArchiver archiveLogs
+INFO: Created archive: logs/archive/2025-06-28/logs_2025-06-28.zip
+Jun 28, 2025 12:49:31 AM com.auction.util.LogArchiver lambda$archiveLogs$1
+SEVERE: Error archiving auction.log: logs\current\auction.log: The process cannot access the file because it is being used by another process
+Jun 28, 2025 12:49:31 AM com.auction.util.LogArchiver archiveLogs
+INFO: Created archive: logs/archive/2025-06-28/logs_2025-06-28.zip
+Jun 28, 2025 12:49:39 AM com.auction.util.LogArchiver lambda$archiveLogs$1
+SEVERE: Error archiving auction.log: logs\current\auction.log: The process cannot access the file because it is being used by another process
+Jun 28, 2025 12:49:39 AM com.auction.util.LogArchiver archiveLogs
+INFO: Created archive: logs/archive/2025-06-28/logs_2025-06-28.zip
+Jun 28, 2025 1:01:09 AM com.auction.util.LogArchiver lambda$archiveLogs$1
+SEVERE: Error archiving auction.log: logs\current\auction.log: The process cannot access the file because it is being used by another process
+Jun 28, 2025 1:01:09 AM com.auction.util.LogArchiver archiveLogs
+INFO: Created archive: logs/archive/2025-06-28/logs_2025-06-28.zip
+Jun 28, 2025 1:01:31 AM com.auction.util.LogArchiver lambda$archiveLogs$1
+SEVERE: Error archiving auction.log: logs\current\auction.log: The process cannot access the file because it is being used by another process
+Jun 28, 2025 1:01:31 AM com.auction.util.LogArchiver archiveLogs
+INFO: Created archive: logs/archive/2025-06-28/logs_2025-06-28.zip
+Jun 28, 2025 1:03:48 AM com.auction.util.LogArchiver lambda$archiveLogs$1
+SEVERE: Error archiving auction.log: logs\current\auction.log: The process cannot access the file because it is being used by another process
+Jun 28, 2025 1:03:48 AM com.auction.util.LogArchiver archiveLogs
+INFO: Created archive: logs/archive/2025-06-28/logs_2025-06-28.zip
+Jun 28, 2025 1:05:53 AM com.auction.util.LogArchiver lambda$archiveLogs$1
+SEVERE: Error archiving auction.log: logs\current\auction.log: The process cannot access the file because it is being used by another process
+Jun 28, 2025 1:05:53 AM com.auction.util.LogArchiver archiveLogs
+INFO: Created archive: logs/archive/2025-06-28/logs_2025-06-28.zip

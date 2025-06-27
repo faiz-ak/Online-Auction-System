@@ -1,5 +1,6 @@
 //FAIZAN
 package com.auction.dao;
+import com.auction.model.Matcher;
 import com.auction.model.RecordClass.Users;
 import com.auction.util.DBUtil;
 import org.slf4j.Logger;
@@ -25,8 +26,8 @@ public class UserDao {
             preparedStatement.setString(3, user.email());
 
             preparedStatement.executeUpdate();
+            Matcher.match(user);
 
-            logger.info("User registered:{}",user.name());
         } catch (SQLException e) {
 
             logger.error("DB error while registering user '{}': {}", user.name(), e.getMessage(), e);

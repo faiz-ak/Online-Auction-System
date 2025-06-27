@@ -1,6 +1,7 @@
 // FAIZAN
 package com.auction.dao;
 
+import com.auction.model.Matcher;
 import com.auction.util.DBUtil;
 import com.auction.model.RecordClass.PlacedTransaction;
 import org.slf4j.Logger;
@@ -27,8 +28,7 @@ public class TransactionDao {
             preparedStatement.setTimestamp(5, Timestamp.valueOf(transaction.transaction_time()));
 
             preparedStatement.executeUpdate();
-
-            logger.info("Transaction placed for Item ID: {}",transaction.item_id());
+            Matcher.match(transaction);
 
         } catch (SQLException e) {
 

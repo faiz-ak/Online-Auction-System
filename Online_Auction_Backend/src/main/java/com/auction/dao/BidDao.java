@@ -1,7 +1,9 @@
 // FAIZAN
 package com.auction.dao;
 
+import com.auction.model.Matcher;
 import com.auction.model.RecordClass.Bid;
+import com.auction.model.RecordClass.PlacedTransaction;
 import com.auction.util.DBUtil;
 
 import java.sql.*;
@@ -25,10 +27,7 @@ public class BidDao {
             preparedStatement.setDouble(4, bid.amount());
             preparedStatement.setTimestamp(5, Timestamp.valueOf(bid.bid_time()));
             preparedStatement.executeUpdate();
-
-            logger.info("Bid placed by User ID: {} for Item ID: {} with Amount: {} at {}",
-                    bid.user_id(), bid.item_id(), bid.amount(), bid.bid_time());
-
+            Matcher.match(bid);
         } catch (SQLException e) {
 
             logger.error("DB error during bid {}", e.getMessage(), e);
@@ -65,4 +64,71 @@ public class BidDao {
             logger.error("General error during DB connection: {}", e.getMessage(),e);
         }
     }
+
+    public void placeTransaction(PlacedTransaction transaction) {
+        String sql = "INSERT INTO PlacedTransaction (item_id, buyer_id, amount, transaction_time) VALUES (?, ?, ?, ?)";
+
+        try (Connection con = DBUtil.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            preparedStatement.setInt(1, transaction.item_id());
+            preparedStatement.setInt(2, transaction.buyer_id());
+            preparedStatement.setDouble(3, transaction.amount());
+            preparedStatement.setTimestamp(4, Timestamp.valueOf(transaction.transaction_time()));
+
+            preparedStatement.executeUpdate();
+
+            ResultSet keys = preparedStatement.getGeneratedKeys();
+            if (keys.next()) {
+                int generatedId = keys.getInt(1);
+                logger.info("Transaction placed successfully with Transaction ID: {}", generatedId);
+            }
+
+        } catch (SQLException e) {
+            logger.error("DB Error during transaction: {}", e.getMessage(), e);
+        } catch (Exception e) {
+            logger.error("General Error during DB connection: {}", e.getMessage(), e);
+        }
+    }
+    public void finalizeWinningTransactions() {
+        String sql = "SELECT b.item_id, b.user_id, b.amount " +
+                "FROM Bid b " +
+                "INNER JOIN ( " +
+                "   SELECT item_id, MAX(amount) AS max_amount " +
+                "   FROM Bid GROUP BY item_id " +
+                ") max_bids ON b.item_id = max_bids.item_id AND b.amount = max_bids.max_amount";
+
+        try {
+            Connection con = DBUtil.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            TransactionDao transactionDao = new TransactionDao();
+
+            while (rs.next()) {
+                int itemId = rs.getInt("item_id");
+                int buyerId = rs.getInt("user_id");
+                double amount = rs.getDouble("amount");
+
+                PlacedTransaction transaction = new PlacedTransaction(
+                        0,
+                        itemId,
+                        buyerId,
+                        amount,
+                        new Timestamp(System.currentTimeMillis()).toLocalDateTime()
+                );
+
+                transactionDao.placeTransaction(transaction);
+
+                logger.info("Winning transaction finalized - Item ID: {}, Buyer ID: {}, Amount: {}",
+                        itemId, buyerId, amount);
+            }
+
+        } catch (SQLException e) {
+            logger.error("Error finalizing winning transactions: {}", e.getMessage(), e);
+        } catch (Exception e) {
+            logger.error("General error finalizing winning transactions: {}", e.getMessage(), e);
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.auction.dao;
 
+import com.auction.model.Matcher;
 import com.auction.model.RecordClass.AuctionItem;
 import com.auction.util.DBUtil;
 import org.slf4j.Logger;
@@ -23,7 +24,7 @@ public class AuctionItemDao {
             ps.setDouble(4, item.start_price());
             ps.executeUpdate();
 
-            logger.info("Auction item inserted: {}", item.title());
+            Matcher.match(item);
         } catch (Exception e) {
             logger.error("Error inserting auction item: {}", item.title(), e);
         }
@@ -68,8 +69,6 @@ public class AuctionItemDao {
                 String title = rs.getString("title");
                 String category = rs.getString("category");
                 double price = rs.getDouble("start_price");
-
-
                 logger.info("Item ID: {}, Title: {}, Category: {}, Starting Price: ${}", id, title, category, price);
 
                 System.out.println("Item id: " + rs.getInt("item_id"));

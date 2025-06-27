@@ -102,24 +102,12 @@ public class Main {
             bidDao.placeBid(bid);
         }
 
-        // Place multiple transactions
-        System.out.print("\nHow many transactions to place? ");
-        int tcount = sc.nextInt();
-        for (int i = 0; i < tcount; i++) {
-            System.out.print("Enter transaction_id: ");
-            int tid = sc.nextInt();
-            System.out.print("Enter item_id: ");
-            int itemId = sc.nextInt();
-            System.out.print("Enter buyer_id: ");
-            int buyerId = sc.nextInt();
-            System.out.print("Enter amount: ");
-            double tamount = sc.nextDouble();
-
-            PlacedTransaction pt = new PlacedTransaction(tid, itemId, buyerId, tamount, LocalDateTime.now());
-            transactionDao.placeTransaction(pt);
-        }
+        // Finalize and insert winning transactions
+        System.out.println("\nFinalizing winning transactions...");
+        bidDao.finalizeWinningTransactions();
 
         System.out.println("\nAll operations completed.");
         sc.close();
+
     }
 }
