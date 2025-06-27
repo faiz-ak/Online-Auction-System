@@ -11,6 +11,9 @@
   </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
     <assistants>
+      <assistant-state connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
+        <messages />
+      </assistant-state>
       <assistant-state connection-id="1a94a366-909d-464e-97fe-87841fbd8491" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
         <messages />
       </assistant-state>
@@ -32,11 +35,8 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="5ae034c3-72e5-4183-8327-0cc490ab6155">
-      <console name="Auction Connection" type="STANDARD" schema="auction" session="Main"><![CDATA[DROP TABLE IF EXISTS PlacedTransaction;
-DROP TABLE IF EXISTS Bid;
-DROP TABLE IF EXISTS AuctionItem;
-DROP TABLE IF EXISTS Users;]]></console>
+    <connection id="04862105-aaf9-44e6-98fe-d493741a2aad">
+      <console name="Auction Connection" type="STANDARD" schema="auction" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -44,26 +44,23 @@ DROP TABLE IF EXISTS Users;]]></console>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="5ae034c3-72e5-4183-8327-0cc490ab6155" object-ref="schemas/auction/tables/placedtransaction" />
-      <object connection-id="5ae034c3-72e5-4183-8327-0cc490ab6155" object-ref="schemas/auction/tables/users" />
-      <object connection-id="5ae034c3-72e5-4183-8327-0cc490ab6155" object-ref="schemas/auction/tables/auctionitem" />
-      <object connection-id="5ae034c3-72e5-4183-8327-0cc490ab6155" object-ref="schemas/auction/tables/bid" />
+      <object connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" object-ref="schemas/auction/tables/auctionitem" />
+      <object connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" object-ref="schemas/auction/tables/placedtransaction" />
+      <object connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" object-ref="schemas/auction/tables/bid" />
+      <object connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" object-ref="schemas/auction/tables/users" />
     </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="5ae034c3-72e5-4183-8327-0cc490ab6155" />
+    <connection id="04862105-aaf9-44e6-98fe-d493741a2aad" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="5ae034c3-72e5-4183-8327-0cc490ab6155" dataset="auction.bid" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="5ae034c3-72e5-4183-8327-0cc490ab6155" dataset="auction.users" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="5ae034c3-72e5-4183-8327-0cc490ab6155" dataset="auction.auctionitem" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="5ae034c3-72e5-4183-8327-0cc490ab6155" dataset="auction.placedtransaction" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" dataset="auction.bid" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" dataset="auction.users" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" dataset="auction.auctionitem" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" dataset="auction.placedtransaction" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
-  </component>
-  <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$PROJECT_DIR$/Online_Auction_Backend/src/main/java/OracleDb.sql" connection-id="5ae034c3-72e5-4183-8327-0cc490ab6155" session-id="MAIN" current-schema="auction" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
@@ -84,7 +81,7 @@ DROP TABLE IF EXISTS Users;]]></console>
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="5ae034c3-72e5-4183-8327-0cc490ab6155" active="true" signed="true">
+      <connection id="04862105-aaf9-44e6-98fe-d493741a2aad" active="true" signed="true">
         <database>
           <name value="Auction Connection" />
           <description value="" />
