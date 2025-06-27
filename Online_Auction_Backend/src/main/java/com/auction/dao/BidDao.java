@@ -15,7 +15,32 @@ public class BidDao {
     private static final Logger logger = LoggerFactory.getLogger(BidDao.class);
 
     public void placeBid(Bid bid) {
-
+//        String checkAuctionSql = "SELECT bid_time FROM AuctionItem WHERE item_id = ?";
+//        try{
+//            Connection con = DBUtil.getConnection();
+//            PreparedStatement psCheck = con.prepareStatement(checkAuctionSql)
+//            psCheck.setInt(1, bid.item_id());
+//            ResultSet rs = psCheck.executeQuery();
+//            if (rs.next()) {
+//                Timestamp endTimeTs = rs.getTimestamp("bid_time");
+//                LocalDateTime auctionEndTime = endTimeTs.toLocalDateTime();
+//                LocalDateTime now = LocalDateTime.now();
+//                if (now.isAfter(auctionEndTime)) {
+//                    logger.warn("Auction for Item ID {} expired at {}. Bid not accepted.",
+//                            bid.item_id(), auctionEndTime);
+//                    return;
+//                }
+//            } else {
+//                logger.warn("Auction item with ID {} not found. Bid cannot be placed.", bid.item_id());
+//                return;
+//            }
+//        } catch (SQLException e) {
+//            logger.error("Error checking auction expiration: {}", e.getMessage(), e);
+//            return;
+//        } catch (Exception e) {
+//            logger.error("General error checking auction expiration: {}", e.getMessage(), e);
+//            return;
+//        }
 
         try {
             Connection con = DBUtil.getConnection();
