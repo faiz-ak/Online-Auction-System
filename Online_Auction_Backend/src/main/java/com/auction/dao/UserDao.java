@@ -17,7 +17,7 @@ public class UserDao {
 //            Connection established
             Connection con = DBUtil.getConnection();
 //            Inserting user
-            String sql = "INSERT INTO Users (user_id, name, email) VALUES (?,?,?)";
+            String sql = "INSERT INTO Users (user_id, name, email) VALUES (?, ?, ?)";
 //            prepared statement for executing dynamic queries
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, user.user_id());

@@ -24,8 +24,6 @@ public class BidDao {
             preparedStatement.setInt(3, bid.item_id());
             preparedStatement.setDouble(4, bid.amount());
             preparedStatement.setTimestamp(5, Timestamp.valueOf(bid.bid_time()));
-
-
             preparedStatement.executeUpdate();
 
             logger.info("Bid placed by User ID: {} for Item ID: {} with Amount: {} at {}",

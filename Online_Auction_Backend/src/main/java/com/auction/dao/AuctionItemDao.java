@@ -12,8 +12,6 @@ public class AuctionItemDao {
 
     // Insert Auction Item
     public void insertAuctionItem(AuctionItem item) {
-
-
         String sql = "INSERT INTO AuctionItem (item_id, title, category, start_price) VALUES (?, ?, ?, ?)";
 
         try {
@@ -73,6 +71,11 @@ public class AuctionItemDao {
 
 
                 logger.info("Item ID: {}, Title: {}, Category: {}, Starting Price: ${}", id, title, category, price);
+
+                System.out.println("Item id: " + rs.getInt("item_id"));
+                System.out.println("Title: " + rs.getString("title")); // changed from "name" to "title"
+                System.out.println("Category: " + rs.getString("category"));
+                System.out.println("Starting Price: $" + rs.getDouble("start_price"));
             }
         } catch (Exception e) {
             logger.error("Error fetching all auction items", e);
