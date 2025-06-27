@@ -3,6 +3,8 @@ package com.auction.dao;
 
 import com.auction.util.DBUtil;
 import com.auction.model.RecordClass.PlacedTransaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 public class TransactionDao {
+    private static final Logger logger = LoggerFactory.getLogger(TransactionDao.class);
 
     public void placeTransaction(PlacedTransaction transaction) {
 
@@ -24,12 +27,16 @@ public class TransactionDao {
             preparedStatement.setTimestamp(5, Timestamp.valueOf(transaction.transaction_time()));
 
             preparedStatement.executeUpdate();
-            System.out.println("\nTransaction placed for Item ID: " + transaction.item_id());
+
+            logger.info("Transaction placed for Item ID: {}",transaction.item_id());
 
         } catch (SQLException e) {
-            System.out.println("DB Error during transaction: " + e.getMessage());
+
+            logger.error("DB Error during transaction: {}",e.getMessage(), e);
         } catch (Exception e) {
-            System.out.println("General Error during DB connection: " + e.getMessage());
+
+            logger.error("General Error during DB connection: {}", e.getMessage(), e);
+
         }
     }
 }

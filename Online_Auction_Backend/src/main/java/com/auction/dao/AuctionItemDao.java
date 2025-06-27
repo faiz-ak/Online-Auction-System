@@ -2,10 +2,13 @@ package com.auction.dao;
 
 import com.auction.model.RecordClass.AuctionItem;
 import com.auction.util.DBUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 
 public class AuctionItemDao {
+    private static final Logger logger = LoggerFactory.getLogger(AuctionItemDao.class);
 
     // Insert Auction Item
     public void insertAuctionItem(AuctionItem item) {
@@ -18,11 +21,11 @@ public class AuctionItemDao {
             ps.setString(2, item.title());
             ps.setString(3, item.category());
             ps.setDouble(4, item.start_price());
-
             ps.executeUpdate();
-            System.out.println("Auction item inserted: " + item.title());
+
+            logger.info("Auction item inserted: {}", item.title());
         } catch (Exception e) {
-            System.out.println("Error inserting auction item: " + e.getMessage());
+            logger.error("Error inserting auction item: {}", item.title(), e);
         }
     }
 
@@ -41,12 +44,12 @@ public class AuctionItemDao {
 
             int rows = ps.executeUpdate();
             if (rows > 0) {
-                System.out.println("Auction item updated: " + item.title());
+                logger.info("Auction item updated: {}", item.title());
             } else {
-                System.out.println("No item found with ID: " + item.item_id());
+                logger.warn("No item found with ID: {}", item.item_id());
             }
         } catch (Exception e) {
-            System.out.println("Error updating auction item: " + e.getMessage());
+            logger.error("Error updating auction item: {}", item.title(), e);
         }
     }
 
@@ -58,15 +61,24 @@ public class AuctionItemDao {
             Connection con = DBUtil.getConnection();
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-            System.out.println("\n=== All Auction Items ===");
+
+            logger.info("\n=== All Auction Items ===");
             while (rs.next()) {
+                int id = rs.getInt("item_id");
+                String title = rs.getString("title");
+                String category = rs.getString("category");
+                double price = rs.getDouble("start_price");
+
+
+                logger.info("Item ID: {}, Title: {}, Category: {}, Starting Price: ${}", id, title, category, price);
+
                 System.out.println("Item id: " + rs.getInt("item_id"));
                 System.out.println("Title: " + rs.getString("title")); // changed from "name" to "title"
                 System.out.println("Category: " + rs.getString("category"));
                 System.out.println("Starting Price: $" + rs.getDouble("start_price"));
             }
         } catch (Exception e) {
-            System.out.println("Error fetching all auction items: " + e.getMessage());
+            logger.error("Error fetching all auction items", e);
         }
     }
 }

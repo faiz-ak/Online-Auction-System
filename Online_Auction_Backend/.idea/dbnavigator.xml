@@ -47,9 +47,7 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="60fdc761-def8-4d42-8225-1159f88f9cd9" object-ref="consoles/Auction" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="60fdc761-def8-4d42-8225-1159f88f9cd9" />
