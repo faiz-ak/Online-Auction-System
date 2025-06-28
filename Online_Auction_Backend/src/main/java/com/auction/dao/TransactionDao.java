@@ -19,7 +19,7 @@ public class TransactionDao {
 
         try {
             Connection con = DBUtil.getConnection();
-            String sql = "INSERT INTO PlacedTransaction (transaction_id, item_id, buyer_id, amount, transaction_time) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO PlacedTransaction (transaction_id, item_id, buyer_id, amount, transaction_time) VALUES (transaction_seq.NEXTVAL, ?, ?, ?, ?)";
             //for mysql
 //            String sql = "INSERT INTO PlacedTransaction (item_id, buyer_id, amount, transaction_time) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = con.prepareStatement(sql);

@@ -71,12 +71,12 @@ public class AuctionItemDao {
                 String title = rs.getString("title");
                 String category = rs.getString("category");
                 double price = rs.getDouble("start_price");
-                logger.info("Item ID: {}, Title: {}, Category: {}, Starting Price: ${}", id, title, category, price);
+                logger.info("Item ID: {}, Title: {}, Category: {}, Starting Price: ₹{}", id, title, category, price);
 
                 System.out.println("Item id: " + rs.getInt("item_id"));
                 System.out.println("Title: " + rs.getString("title"));
                 System.out.println("Category: " + rs.getString("category"));
-                System.out.println("Starting Price: $" + rs.getDouble("start_price"));
+                System.out.println("Starting Price: ₹" + rs.getDouble("start_price"));
                 System.out.println();
             }
         } catch (Exception e) {

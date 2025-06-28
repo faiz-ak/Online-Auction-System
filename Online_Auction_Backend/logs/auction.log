@@ -187,3 +187,112 @@ Caused by: oracle.jdbc.OracleDatabaseException: ORA-00942: table or view does no
 2025-06-28 18:59:29 [main] INFO  BidDao:149 - Winning transaction finalized - Item ID: 5, Buyer ID: 2, Amount: 70000.0
 2025-06-28 18:59:29 [main] INFO  Matcher:22 -  TRANSACTION → Transaction ID: 0 | Item ID: 6 | Buyer ID: 7 | Amount: ₹1000.0 | Time: 2025-06-28T18:59:29.508
 2025-06-28 18:59:29 [main] INFO  BidDao:149 - Winning transaction finalized - Item ID: 6, Buyer ID: 7, Amount: 1000.0
+2025-06-28 20:52:06 [main] INFO  Matcher:13 -  USER → ID: -1 | Name: Faizan | Email: faizan@gmail.com
+2025-06-28 20:52:41 [main] INFO  Matcher:13 -  USER → ID: -1 | Name: Famiya | Email: famiya@gmail.com
+2025-06-28 20:52:58 [main] INFO  Matcher:16 -  AUCTION ITEM → ID: -1 | Title: Gold Chain | Category: Necklace | Start Price: ₹40000.0
+2025-06-28 20:53:12 [main] INFO  Matcher:16 -  AUCTION ITEM → ID: -1 | Title: Suitcase | Category: Bag | Start Price: ₹50000.0
+2025-06-28 20:53:14 [main] INFO  AuctionItemDao:68 - 
+=== All Auction Items ===
+2025-06-28 20:53:14 [main] INFO  AuctionItemDao:74 - Item ID: 21, Title: Gold Chain, Category: Necklace, Starting Price: $40000.0
+2025-06-28 20:53:14 [main] INFO  AuctionItemDao:74 - Item ID: 22, Title: Suitcase, Category: Bag, Starting Price: $50000.0
+2025-06-28 20:54:05 [main] INFO  Matcher:19 -  BID → Bid ID: -1 | User ID: 41 | Item ID: 22 | Amount: ₹60000.0 | Time: 2025-06-28T20:54:05.538293800
+2025-06-28 20:54:18 [main] INFO  Matcher:19 -  BID → Bid ID: -1 | User ID: 42 | Item ID: 22 | Amount: ₹80000.0 | Time: 2025-06-28T20:54:18.437789800
+2025-06-28 20:54:18 [main] ERROR TransactionDao:36 - DB Error during transaction: ORA-00947: not enough values
+
+java.sql.SQLSyntaxErrorException: ORA-00947: not enough values
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:628) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:562) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1145) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:726) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:291) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:492) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:148) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:1038) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleStatement.executeSQLStatement(OracleStatement.java:1507) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1287) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3735) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OraclePreparedStatement.executeLargeUpdate(OraclePreparedStatement.java:3910) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:3889) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:992) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at com.auction.dao.TransactionDao.placeTransaction(TransactionDao.java:31) [classes/:?]
+	at com.auction.dao.BidDao.finalizeWinningTransactions(BidDao.java:147) [classes/:?]
+	at com.auction.Main.main(Main.java:100) [classes/:?]
+Caused by: oracle.jdbc.OracleDatabaseException: ORA-00947: not enough values
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:632) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	... 16 more
+2025-06-28 20:54:18 [main] INFO  BidDao:149 - Winning transaction finalized - Item ID: 22, Buyer ID: 42, Amount: 80000.0
+2025-06-28 21:03:13 [main] INFO  Matcher:13 -  USER → ID: -1 | Name: Bibhab | Email: bibhab@gmail.com
+2025-06-28 21:03:25 [main] INFO  Matcher:13 -  USER → ID: -1 | Name: John | Email: johny@gmail.com
+2025-06-28 21:03:54 [main] INFO  Matcher:16 -  AUCTION ITEM → ID: -1 | Title: Toy | Category: toy | Start Price: ₹500.0
+2025-06-28 21:04:00 [main] INFO  AuctionItemDao:68 - 
+=== All Auction Items ===
+2025-06-28 21:04:00 [main] INFO  AuctionItemDao:74 - Item ID: 21, Title: Gold Chain, Category: Necklace, Starting Price: $40000.0
+2025-06-28 21:04:00 [main] INFO  AuctionItemDao:74 - Item ID: 22, Title: Suitcase, Category: Bag, Starting Price: $50000.0
+2025-06-28 21:04:00 [main] INFO  AuctionItemDao:74 - Item ID: 23, Title: Toy, Category: toy, Starting Price: $500.0
+2025-06-28 21:05:24 [main] INFO  Matcher:19 -  BID → Bid ID: -1 | User ID: 44 | Item ID: 23 | Amount: ₹600.0 | Time: 2025-06-28T21:05:24.805842500
+2025-06-28 21:05:39 [main] INFO  Matcher:19 -  BID → Bid ID: -1 | User ID: 42 | Item ID: 23 | Amount: ₹800.0 | Time: 2025-06-28T21:05:39.556870800
+2025-06-28 21:05:39 [main] INFO  Matcher:22 -  TRANSACTION → Transaction ID: 0 | Item ID: 22 | Buyer ID: 42 | Amount: ₹80000.0 | Time: 2025-06-28T21:05:39.753
+2025-06-28 21:05:39 [main] INFO  BidDao:149 - Winning transaction finalized - Item ID: 22, Buyer ID: 42, Amount: 80000.0
+2025-06-28 21:05:39 [main] INFO  Matcher:22 -  TRANSACTION → Transaction ID: 0 | Item ID: 23 | Buyer ID: 42 | Amount: ₹800.0 | Time: 2025-06-28T21:05:39.828
+2025-06-28 21:05:39 [main] INFO  BidDao:149 - Winning transaction finalized - Item ID: 23, Buyer ID: 42, Amount: 800.0
+2025-06-28 21:15:19 [main] INFO  Matcher:13 -  USER → ID: -1 | Name: Shyam | Email: shyam@gmail.com
+2025-06-28 21:15:31 [main] INFO  Matcher:16 -  AUCTION ITEM → ID: -1 | Title: tshirt | Category: cloth | Start Price: ₹1000.0
+2025-06-28 21:15:32 [main] INFO  AuctionItemDao:68 - 
+=== All Auction Items ===
+2025-06-28 21:15:32 [main] INFO  AuctionItemDao:74 - Item ID: 21, Title: Gold Chain, Category: Necklace, Starting Price: ₹40000.0
+2025-06-28 21:15:32 [main] INFO  AuctionItemDao:74 - Item ID: 22, Title: Suitcase, Category: Bag, Starting Price: ₹50000.0
+2025-06-28 21:15:32 [main] INFO  AuctionItemDao:74 - Item ID: 23, Title: Toy, Category: toy, Starting Price: ₹500.0
+2025-06-28 21:15:32 [main] INFO  AuctionItemDao:74 - Item ID: 24, Title: tshirt, Category: cloth, Starting Price: ₹1000.0
+2025-06-28 21:16:21 [main] INFO  Matcher:19 -  BID → Bid ID: -1 | User ID: 45 | Item ID: 24 | Amount: ₹1200.0 | Time: 2025-06-28T21:16:21.051657300
+2025-06-28 21:16:38 [main] INFO  Matcher:19 -  BID → Bid ID: -1 | User ID: 44 | Item ID: 21 | Amount: ₹1000.0 | Time: 2025-06-28T21:16:38.284626400
+2025-06-28 21:16:38 [main] ERROR BidDao:155 - Error finalizing winning transactions: Invalid column name
+java.sql.SQLException: Invalid column name
+	at oracle.jdbc.driver.OracleStatement.getColumnIndexPrimitive(OracleStatement.java:4240) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleStatement.getColumnIndex(OracleStatement.java:4198) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.InsensitiveScrollableResultSet.findColumn(InsensitiveScrollableResultSet.java:295) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.GeneratedResultSet.getInt(GeneratedResultSet.java:622) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at com.auction.dao.BidDao.finalizeWinningTransactions(BidDao.java:137) [classes/:?]
+	at com.auction.Main.main(Main.java:100) [classes/:?]
+2025-06-28 21:25:05 [main] INFO  Matcher:13 -  USER → ID: -1 | Name: faizan | Email: faizan@gmail.com
+2025-06-28 21:25:10 [main] INFO  Matcher:16 -  AUCTION ITEM → ID: -1 | Title: sad | Category: sad | Start Price: ₹500.0
+2025-06-28 21:25:12 [main] INFO  AuctionItemDao:68 - 
+=== All Auction Items ===
+2025-06-28 21:25:12 [main] INFO  AuctionItemDao:74 - Item ID: 21, Title: Gold Chain, Category: Necklace, Starting Price: ₹40000.0
+2025-06-28 21:25:12 [main] INFO  AuctionItemDao:74 - Item ID: 22, Title: Suitcase, Category: Bag, Starting Price: ₹50000.0
+2025-06-28 21:25:12 [main] INFO  AuctionItemDao:74 - Item ID: 23, Title: Toy, Category: toy, Starting Price: ₹500.0
+2025-06-28 21:25:12 [main] INFO  AuctionItemDao:74 - Item ID: 24, Title: tshirt, Category: cloth, Starting Price: ₹1000.0
+2025-06-28 21:25:12 [main] INFO  AuctionItemDao:74 - Item ID: 25, Title: sad, Category: sad, Starting Price: ₹500.0
+2025-06-28 21:25:27 [main] ERROR BidDao:59 - DB error during bid ORA-02291: integrity constraint (SYSTEM.FK_BID_ITEM) violated - parent key not found
+
+java.sql.SQLIntegrityConstraintViolationException: ORA-02291: integrity constraint (SYSTEM.FK_BID_ITEM) violated - parent key not found
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:628) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:562) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1145) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:726) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:291) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:492) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:148) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:1038) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleStatement.executeSQLStatement(OracleStatement.java:1507) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1287) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3735) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OraclePreparedStatement.executeLargeUpdate(OraclePreparedStatement.java:3910) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:3889) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:992) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	at com.auction.dao.BidDao.placeBid(BidDao.java:55) [classes/:?]
+	at com.auction.Main.main(Main.java:107) [classes/:?]
+Caused by: oracle.jdbc.OracleDatabaseException: ORA-02291: integrity constraint (SYSTEM.FK_BID_ITEM) violated - parent key not found
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:632) ~[ojdbc8-21.1.0.0.jar:21.1.0.0.0]
+	... 15 more
+2025-06-28 21:25:27 [main] INFO  Matcher:22 -  TRANSACTION → Transaction ID: 0 | Item ID: 22 | Buyer ID: 42 | Amount: ₹80000.0 | Time: 2025-06-28T21:25:27.633
+2025-06-28 21:25:27 [main] INFO  BidDao:149 - Winning transaction finalized - Item ID: 22, Buyer ID: 42, Amount: 80000.0
+2025-06-28 21:25:27 [main] INFO  Matcher:22 -  TRANSACTION → Transaction ID: 0 | Item ID: 23 | Buyer ID: 42 | Amount: ₹800.0 | Time: 2025-06-28T21:25:27.707
+2025-06-28 21:25:27 [main] INFO  BidDao:149 - Winning transaction finalized - Item ID: 23, Buyer ID: 42, Amount: 800.0
+2025-06-28 21:25:28 [main] INFO  Matcher:22 -  TRANSACTION → Transaction ID: 0 | Item ID: 24 | Buyer ID: 45 | Amount: ₹1200.0 | Time: 2025-06-28T21:25:27.777
+2025-06-28 21:25:28 [main] INFO  BidDao:149 - Winning transaction finalized - Item ID: 24, Buyer ID: 45, Amount: 1200.0
+2025-06-28 21:25:28 [main] INFO  Matcher:22 -  TRANSACTION → Transaction ID: 0 | Item ID: 21 | Buyer ID: 44 | Amount: ₹1000.0 | Time: 2025-06-28T21:25:28.214
+2025-06-28 21:25:28 [main] INFO  BidDao:149 - Winning transaction finalized - Item ID: 21, Buyer ID: 44, Amount: 1000.0

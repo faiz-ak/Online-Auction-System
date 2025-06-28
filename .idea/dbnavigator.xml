@@ -11,10 +11,10 @@
   </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
     <assistants>
-      <assistant-state connection-id="1a94a366-909d-464e-97fe-87841fbd8491" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
         <messages />
       </assistant-state>
-      <assistant-state connection-id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="1a94a366-909d-464e-97fe-87841fbd8491" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
         <messages />
       </assistant-state>
       <assistant-state connection-id="virtual-oracle-connection" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
@@ -109,8 +109,12 @@ CREATE TABLE PlacedTransaction (
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747" object-ref="consoles/Auction Connection" />
+      <object connection-id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747" object-ref="schemas/SYSTEM/tables/PLACEDTRANSACTION" />
+      <object connection-id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747" object-ref="schemas/SYSTEM/tables/BID" />
       <object connection-id="09c9839e-abd1-44da-af62-969d57baf406" object-ref="consoles/MYSQL Connection" />
+      <object connection-id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747" object-ref="consoles/Auction Connection" />
+      <object connection-id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747" object-ref="schemas/SYSTEM/tables/AUCTIONITEM" />
+      <object connection-id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747" object-ref="schemas/SYSTEM/tables/USERS" />
     </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
@@ -118,6 +122,10 @@ CREATE TABLE PlacedTransaction (
     <connection id="09c9839e-abd1-44da-af62-969d57baf406" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747" dataset="SYSTEM.AUCTIONITEM" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747" dataset="SYSTEM.BID" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747" dataset="SYSTEM.PLACEDTRANSACTION" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747" dataset="SYSTEM.USERS" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747" dataset="SYSTEM.HELP" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">

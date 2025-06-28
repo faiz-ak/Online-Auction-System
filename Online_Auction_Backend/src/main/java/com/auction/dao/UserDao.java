@@ -25,7 +25,6 @@ public class UserDao {
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setString(1, user.name());
             preparedStatement.setString(2, user.email());
-
             preparedStatement.executeUpdate();
             Matcher.match(user);
 
