@@ -19,13 +19,12 @@ public class TransactionDao {
 
         try {
             Connection con = DBUtil.getConnection();
-            String sql = "INSERT INTO PlacedTransaction (transaction_id, item_id, buyer_id, amount, transaction_time) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO PlacedTransaction (item_id, buyer_id, amount, transaction_time) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setInt(1, transaction.transaction_id());
-            preparedStatement.setInt(2, transaction.item_id());
-            preparedStatement.setInt(3, transaction.buyer_id());
-            preparedStatement.setDouble(4, transaction.amount());
-            preparedStatement.setTimestamp(5, Timestamp.valueOf(transaction.transaction_time()));
+            preparedStatement.setInt(1, transaction.item_id());
+            preparedStatement.setInt(2, transaction.buyer_id());
+            preparedStatement.setDouble(3, transaction.amount());
+            preparedStatement.setTimestamp(4, Timestamp.valueOf(transaction.transaction_time()));
 
             preparedStatement.executeUpdate();
             Matcher.match(transaction);

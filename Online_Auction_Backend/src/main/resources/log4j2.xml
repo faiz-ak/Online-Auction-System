@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
     <Appenders>
-        <File name="FILE" fileName="logs/auction.log">
+        <File name="FILE" fileName="Online_Auction_Backend/logs/auction.log">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %m%n"/>
         </File>
     </Appenders>

@@ -33,15 +33,13 @@ public class Main {
         System.out.print("How many users to add? ");
         int ucount = sc.nextInt();
         for (int i = 0; i < ucount; i++) {
-            System.out.print("Enter user_id: ");
-            int uid = sc.nextInt();
             sc.nextLine();
             System.out.print("Enter name: ");
             String uname = sc.nextLine();
             System.out.print("Enter email: ");
             String email = sc.nextLine();
 
-            Users user = new Users(uid, uname, email);
+            Users user = new Users(0, uname, email);
             userDao.RegisterUser(user);
         }
 
@@ -49,8 +47,6 @@ public class Main {
         System.out.print("\nHow many auction items to add? ");
         int acount = sc.nextInt();
         for (int i = 0; i < acount; i++) {
-            System.out.print("Enter item_id: ");
-            int itemId = sc.nextInt();
             sc.nextLine();
             System.out.print("Enter title: ");
             String title = sc.nextLine();
@@ -59,7 +55,7 @@ public class Main {
             System.out.print("Enter start_price: ");
             double price = sc.nextDouble();
 
-            AuctionItem item = new AuctionItem(itemId, title, category, price);
+            AuctionItem item = new AuctionItem(0, title, category, price);
             itemDao.insertAuctionItem(item);
         }
 
@@ -89,8 +85,6 @@ public class Main {
         System.out.print("\nHow many bids to place? ");
         int bcount = sc.nextInt();
         for (int i = 0; i < bcount; i++) {
-            System.out.print("Enter bid_id: ");
-            int bidId = sc.nextInt();
             System.out.print("Enter user_id: ");
             int userId = sc.nextInt();
             System.out.print("Enter item_id: ");
@@ -98,7 +92,7 @@ public class Main {
             System.out.print("Enter bid amount: ");
             double amount = sc.nextDouble();
 
-            Bid bid = new Bid(bidId, userId, itemId, amount, LocalDateTime.now());
+            Bid bid = new Bid(0, userId, itemId, amount, LocalDateTime.now());
             bidDao.placeBid(bid);
         }
 

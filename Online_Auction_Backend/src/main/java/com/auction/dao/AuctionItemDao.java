@@ -13,15 +13,14 @@ public class AuctionItemDao {
 
     // Insert Auction Item
     public void insertAuctionItem(AuctionItem item) {
-        String sql = "INSERT INTO AuctionItem (item_id, title, category, start_price) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO AuctionItem (title, category, start_price) VALUES (?, ?, ?)";
 
         try {
             Connection con = DBUtil.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, item.item_id());
-            ps.setString(2, item.title());
-            ps.setString(3, item.category());
-            ps.setDouble(4, item.start_price());
+            ps.setString(1, item.title());
+            ps.setString(2, item.category());
+            ps.setDouble(3, item.start_price());
             ps.executeUpdate();
 
             Matcher.match(item);
@@ -72,9 +71,10 @@ public class AuctionItemDao {
                 logger.info("Item ID: {}, Title: {}, Category: {}, Starting Price: ${}", id, title, category, price);
 
                 System.out.println("Item id: " + rs.getInt("item_id"));
-                System.out.println("Title: " + rs.getString("title")); // changed from "name" to "title"
+                System.out.println("Title: " + rs.getString("title"));
                 System.out.println("Category: " + rs.getString("category"));
                 System.out.println("Starting Price: $" + rs.getDouble("start_price"));
+                System.out.println();
             }
         } catch (Exception e) {
             logger.error("Error fetching all auction items", e);
