@@ -7,7 +7,6 @@ import com.auction.dao.UserDao;
 import com.auction.model.RecordClass.AuctionItem;
 import com.auction.model.RecordClass.Bid;
 import com.auction.model.RecordClass.Users;
-import com.auction.model.RecordClass.PlacedTransaction;
 import com.auction.util.LogArchiver;
 
 import java.time.LocalDateTime;
