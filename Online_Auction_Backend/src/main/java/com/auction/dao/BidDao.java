@@ -44,6 +44,8 @@ public class BidDao {
 
         try {
             Connection con = DBUtil.getConnection();
+//            String sql = "INSERT INTO Bid (bid_id, user_id, item_id, amount, bid_time) VALUES (bid_seq.NEXTVAL, ?, ?, ?, ?)";
+//for mysql
             String sql = "INSERT INTO Bid (user_id, item_id, amount, bid_time) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, bid.user_id());

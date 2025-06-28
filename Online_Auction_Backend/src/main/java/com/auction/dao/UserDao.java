@@ -18,6 +18,8 @@ public class UserDao {
 //            Connection established
             Connection con = DBUtil.getConnection();
 //            Inserting user
+//            String sql = "INSERT INTO Users (user_id, name, email) VALUES (users_seq.NEXTVAL, ?, ?)";
+//for mysql
             String sql = "INSERT INTO Users (name, email) VALUES (?, ?)";
 //            prepared statement for executing dynamic queries
             PreparedStatement preparedStatement = con.prepareStatement(sql);

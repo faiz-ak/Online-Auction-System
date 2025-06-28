@@ -11,19 +11,43 @@
   </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
     <assistants>
-      <assistant-state connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
-        <messages />
-      </assistant-state>
       <assistant-state connection-id="1a94a366-909d-464e-97fe-87841fbd8491" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
         <messages />
       </assistant-state>
-      <assistant-state connection-id="73ffe535-f62a-4913-b8cc-0af492349635" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
+        <messages />
+      </assistant-state>
+      <assistant-state connection-id="virtual-oracle-connection" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
         <messages />
       </assistant-state>
       <assistant-state connection-id="5ae034c3-72e5-4183-8327-0cc490ab6155" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
         <messages />
       </assistant-state>
       <assistant-state connection-id="virtual-mysql-connection" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
+        <messages />
+      </assistant-state>
+      <assistant-state connection-id="2862c921-e48e-43bd-9c98-ebd6b10e334b" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNCERTAIN" acknowledgement="NONE">
+        <messages />
+      </assistant-state>
+      <assistant-state connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
+        <messages />
+      </assistant-state>
+      <assistant-state connection-id="a9e565b2-0813-4db5-b10f-617098b7031c" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
+        <messages />
+      </assistant-state>
+      <assistant-state connection-id="09c9839e-abd1-44da-af62-969d57baf406" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
+        <messages />
+      </assistant-state>
+      <assistant-state connection-id="73ffe535-f62a-4913-b8cc-0af492349635" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
+        <messages />
+      </assistant-state>
+      <assistant-state connection-id="ba937863-0b7c-4196-9cb0-f76dff9de458" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
+        <messages />
+      </assistant-state>
+      <assistant-state connection-id="29a083b0-7e04-4ab6-a56f-9d2b008b7132" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
+        <messages />
+      </assistant-state>
+      <assistant-state connection-id="28131892-39b9-457a-ac40-58a066dfb2f8" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
         <messages />
       </assistant-state>
     </assistants>
@@ -35,8 +59,11 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="04862105-aaf9-44e6-98fe-d493741a2aad">
-      <console name="Auction Connection" type="STANDARD" schema="auction" session="Main" />
+    <connection id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747">
+      <console name="Auction Connection" type="STANDARD" schema="SYSTEM" session="Main" />
+    </connection>
+    <connection id="09c9839e-abd1-44da-af62-969d57baf406">
+      <console name="MYSQL Connection" type="STANDARD" schema="auction" session="Main"><![CDATA[SELECT * FROM users;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -44,26 +71,21 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" object-ref="schemas/auction/tables/users" />
-      <object connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" object-ref="schemas/auction/tables/bid" />
-      <object connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" object-ref="schemas/auction/tables/placedtransaction" />
-      <object connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" object-ref="schemas/auction/tables/auctionitem" />
+      <object connection-id="09c9839e-abd1-44da-af62-969d57baf406" object-ref="consoles/MYSQL Connection" />
     </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="04862105-aaf9-44e6-98fe-d493741a2aad" />
+    <connection id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747" />
+    <connection id="09c9839e-abd1-44da-af62-969d57baf406" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" dataset="auction.bid" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" dataset="auction.users" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" dataset="auction.auctionitem" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" dataset="auction.placedtransaction" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="a9e565b2-0813-4db5-b10f-617098b7031c" dataset="SYSTEM.AUCTIONITEM" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="a9e565b2-0813-4db5-b10f-617098b7031c" dataset="SYSTEM.BID" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="a9e565b2-0813-4db5-b10f-617098b7031c" dataset="SYSTEM.PLACEDTRANSACTION" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="a9e565b2-0813-4db5-b10f-617098b7031c" dataset="SYSTEM.USERS" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
-  </component>
-  <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$PROJECT_DIR$/Online_Auction_Backend/src/main/java/OracleDb.sql" connection-id="04862105-aaf9-44e6-98fe-d493741a2aad" session-id="MAIN" current-schema="auction" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
@@ -73,20 +95,125 @@
     </execution-history>
     <execution-variables-cache />
   </component>
+  <component name="DBNavigator.Project.ObjectDependencyManager">
+    <last-used-dependency-type value="INCOMING" />
+  </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
     <filters />
   </component>
   <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
     <recently-used-interfaces>
+      <mapping database-type="ORACLE" interface-id="eb4cbec2-a506-4acf-9f77-01d2acd7fe04" />
       <mapping database-type="MYSQL" interface-id="DEFAULT" />
     </recently-used-interfaces>
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="04862105-aaf9-44e6-98fe-d493741a2aad" active="true" signed="true">
+      <connection id="f795aeab-320d-4a6f-b3a1-2b93ec1bb747" active="true" signed="true">
         <database>
           <name value="Auction Connection" />
+          <description value="" />
+          <database-type value="ORACLE" />
+          <config-type value="BASIC" />
+          <database-version value="21.3" />
+          <driver-source value="BUNDLED" />
+          <driver-library value="" />
+          <driver value="" />
+          <url-type value="SID" />
+          <host value="localhost" />
+          <port value="1521" />
+          <database value="xe" />
+          <tns-folder value="" />
+          <tns-profile value="" />
+          <type value="USER_PASSWORD" />
+          <user value="System" />
+          <token-type value="" />
+          <token-config-file value="" />
+          <token-profile value="" />
+          <session-user value="SYSTEM" />
+        </database>
+        <properties>
+          <auto-commit value="false" />
+        </properties>
+        <ssh-settings>
+          <active value="false" />
+          <proxy-host value="" />
+          <proxy-port value="22" />
+          <proxy-user value="" />
+          <auth-type value="PASSWORD" />
+          <key-file value="" />
+        </ssh-settings>
+        <ssl-settings>
+          <active value="false" />
+          <certificate-authority-file value="" />
+          <client-certificate-file value="" />
+          <client-key-file value="" />
+        </ssl-settings>
+        <details>
+          <charset value="UTF-8" />
+          <session-management value="true" />
+          <ddl-file-binding value="true" />
+          <database-logging value="true" />
+          <connect-automatically value="true" />
+          <restore-workspace value="true" />
+          <restore-workspace-deep value="false" />
+          <environment-type value="default" />
+          <connectivity-timeout value="30" />
+          <idle-time-to-disconnect value="30" />
+          <idle-time-to-disconnect-pool value="5" />
+          <credential-expiry-time value="10" />
+          <max-connection-pool-size value="7" />
+          <alternative-statement-delimiter value="" />
+        </details>
+        <debugger>
+          <compile-dependencies value="true" />
+          <tcp-driver-tunneling value="false" />
+          <tcp-host-address value="" />
+          <tcp-port-from value="4000" />
+          <tcp-port-to value="4999" />
+          <debugger-type value="ASK" />
+        </debugger>
+        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false" hide-audit-columns="false">
+          <object-filters />
+          <object-type-filter use-master-settings="true">
+            <object-type name="SCHEMA" enabled="true" />
+            <object-type name="USER" enabled="true" />
+            <object-type name="ROLE" enabled="true" />
+            <object-type name="PRIVILEGE" enabled="true" />
+            <object-type name="CHARSET" enabled="true" />
+            <object-type name="TABLE" enabled="true" />
+            <object-type name="VIEW" enabled="true" />
+            <object-type name="MATERIALIZED_VIEW" enabled="true" />
+            <object-type name="NESTED_TABLE" enabled="true" />
+            <object-type name="COLUMN" enabled="true" />
+            <object-type name="INDEX" enabled="true" />
+            <object-type name="CONSTRAINT" enabled="true" />
+            <object-type name="DATASET_TRIGGER" enabled="true" />
+            <object-type name="DATABASE_TRIGGER" enabled="true" />
+            <object-type name="SYNONYM" enabled="true" />
+            <object-type name="SEQUENCE" enabled="true" />
+            <object-type name="PROCEDURE" enabled="true" />
+            <object-type name="FUNCTION" enabled="true" />
+            <object-type name="PACKAGE" enabled="true" />
+            <object-type name="TYPE" enabled="true" />
+            <object-type name="TYPE_ATTRIBUTE" enabled="true" />
+            <object-type name="ARGUMENT" enabled="true" />
+            <object-type name="JAVA_CLASS" enabled="true" />
+            <object-type name="JAVA_INNER_CLASS" enabled="true" />
+            <object-type name="JAVA_FIELD" enabled="true" />
+            <object-type name="JAVA_METHOD" enabled="true" />
+            <object-type name="DIMENSION" enabled="true" />
+            <object-type name="CLUSTER" enabled="true" />
+            <object-type name="DBLINK" enabled="true" />
+            <object-type name="CREDENTIAL" enabled="true" />
+            <object-type name="AI_PROFILE" enabled="true" />
+          </object-type-filter>
+        </object-filters>
+      </connection>
+      <connection id="09c9839e-abd1-44da-af62-969d57baf406" active="true" signed="true">
+        <database>
+          <name value="MYSQL Connection" />
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
@@ -516,7 +643,9 @@
         <prompt-execution value="false" />
       </statement-execution>
       <script-execution>
-        <command-line-interfaces />
+        <command-line-interfaces>
+          <value id="eb4cbec2-a506-4acf-9f77-01d2acd7fe04" name="Oracle SQl-developer client" executable-path="$PROJECT_DIR$/../sqldeveloper-24.3.1.347.1826-no-jre/sqldeveloper/sqldeveloper.exe" database-type="ORACLE" />
+        </command-line-interfaces>
         <execution-timeout value="300" />
       </script-execution>
       <method-execution>

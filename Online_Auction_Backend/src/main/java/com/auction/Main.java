@@ -39,7 +39,7 @@ public class Main {
             System.out.print("Enter email: ");
             String email = sc.nextLine();
 
-            Users user = new Users(0, uname, email);
+            Users user = new Users(-1, uname, email);
             userDao.RegisterUser(user);
         }
 
@@ -55,7 +55,7 @@ public class Main {
             System.out.print("Enter start_price: ");
             double price = sc.nextDouble();
 
-            AuctionItem item = new AuctionItem(0, title, category, price);
+            AuctionItem item = new AuctionItem(-1, title, category, price);
             itemDao.insertAuctionItem(item);
         }
 
@@ -92,7 +92,7 @@ public class Main {
             System.out.print("Enter bid amount: ");
             double amount = sc.nextDouble();
 
-            Bid bid = new Bid(0, userId, itemId, amount, LocalDateTime.now());
+            Bid bid = new Bid(-1, userId, itemId, amount, LocalDateTime.now());
             bidDao.placeBid(bid);
         }
 

@@ -13,6 +13,9 @@ public class AuctionItemDao {
 
     // Insert Auction Item
     public void insertAuctionItem(AuctionItem item) {
+
+//        String sql = "INSERT INTO AuctionItem (item_id, title, category, start_price) VALUES (auction_item_seq.NEXTVAL, ?, ?, ?)";
+//for mysql
         String sql = "INSERT INTO AuctionItem (title, category, start_price) VALUES (?, ?, ?)";
 
         try {
